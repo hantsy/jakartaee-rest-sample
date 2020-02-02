@@ -3,7 +3,7 @@ package com.example.web;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
 
-public class PageRequest {
+public class PageParam {
     @QueryParam("offset")
     @DefaultValue("0")
     private int offset;

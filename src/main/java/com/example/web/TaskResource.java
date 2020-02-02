@@ -19,42 +19,21 @@ import java.util.logging.Logger;
 
 import static javax.ws.rs.core.Response.*;
 
-@Path("tasks")
 @RequestScoped
-public class TaskController {
+public class TaskResource {
 
     @Inject
     Logger log;
+
+    @PathParam("id")
+    Long id;
 
     @Inject
     TaskRepository taskRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response allTasks(
-            @QueryParam("q") String keyword,
-            @QueryParam("status") String status,
-            @BeanParam PageRequest page
-    ) {
-        log.log(Level.INFO, "fetching all tasks, keyword: {0} status:{1}", new Object[]{keyword, status});
-
-        Task.Status taskStatus;
-        try {
-            taskStatus = Task.Status.valueOf(status);
-        } catch (Exception e) {
-            log.log(Level.SEVERE, "can not parse task status value:{0}", status);
-            taskStatus = null;
-        }
-
-        List<Task> tasks = taskRepository.searchByKeyword(keyword, taskStatus, page.getOffset(), page.getLimit());
-        long count = taskRepository.countByKeyword(keyword, taskStatus);
-        return ok(PagedResult.of(tasks, count)).build();
-    }
-
-    @GET
-    @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response taskDetails(@PathParam("id") @NotNull Long id) {
+    public Response taskDetails() {
         log.log(Level.INFO, "get task by id@{0}", id);
 
         return taskRepository.findOptionalById(id)
@@ -62,26 +41,9 @@ public class TaskController {
                 .orElseThrow(() -> new TaskNotFoundException(id));
     }
 
-
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(@Valid TaskForm form) {
-        log.log(Level.INFO, "saving new task @{0}", form);
-
-        Task task = new Task();
-        task.setName(form.getName());
-        task.setDescription(form.getDescription());
-
-        Task saved = taskRepository.save(task);
-
-        return created(URI.create("/api/tasks/" + saved.getId())).build();
-    }
-
-
     @PUT
-    @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam(value = "id") Long id, @Valid TaskForm form) {
+    public Response update(@Valid TaskForm form) {
         log.log(Level.INFO, "updating existed task@id:{0}, form data:{1}", new Object[]{id, form});
 
         return taskRepository.findOptionalById(id)
@@ -96,9 +58,9 @@ public class TaskController {
     }
 
     @PUT
-    @Path("{id}/status")
+    @Path("status")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateStatus(@PathParam(value = "id") Long id, @Valid UpdateStatusRequest status) {
+    public Response updateStatus(@Valid UpdateStatusRequest status) {
         log.log(Level.INFO, "updating status of the existed task@id:{0}, status:{1}", new Object[]{id, status});
 
         Task.Status taskStatus = null;
@@ -120,8 +82,7 @@ public class TaskController {
     }
 
     @DELETE
-    @Path("{id}")
-    public Response delete(@PathParam("id") Long id) {
+    public Response delete() {
         log.log(Level.INFO, "deleting task @{0}", id);
 
         return taskRepository.findOptionalById(id)
