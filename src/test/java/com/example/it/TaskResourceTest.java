@@ -1,7 +1,6 @@
 package com.example.it;
 
 import com.example.Bootstrap;
-import com.example.Resources;
 import com.example.config.JaxrsActivator;
 import com.example.domain.Task;
 import com.example.web.PagedResult;
@@ -11,7 +10,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.asset.FileAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +22,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -45,7 +42,7 @@ public class TaskResourceTest {
                 .addPackage(JaxrsActivator.class.getPackage())
                 .addPackage(TaskResources.class.getPackage())
                 //Add JPA persistence configuration.
-                //WARN: In a war package, persistence.xml should be put into /WEB-INF/classes/META-INF/, not /META-INF
+                //WARN: In a war archive, persistence.xml should be put into /WEB-INF/classes/META-INF/, not /META-INF
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 // Enable CDI
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
@@ -73,7 +70,7 @@ public class TaskResourceTest {
     }
 
     @Test
-    public void should_create_greeting() throws MalformedURLException {
+    public void shouldFoundTasks() throws MalformedURLException {
         final WebTarget getAllTasksTarget = client.target(URI.create(new URL(base, "api/tasks").toExternalForm()));
         try (final Response getAllTasksResponse = getAllTasksTarget.request()
                 .accept(MediaType.APPLICATION_JSON)

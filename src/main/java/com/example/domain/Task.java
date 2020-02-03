@@ -49,6 +49,16 @@ public class Task implements Serializable {
             + "\n lastModifiedAt:" + t.getLastModifiedDate()
             + "]";
 
+    public Task() {}
+
+    public static Task of(String name, String description) {
+        final Task task = new Task();
+        task.setName(name);
+        task.setDescription(description);
+
+        return task;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
