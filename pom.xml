@@ -354,6 +354,14 @@
                                     <cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
                                     <cargo.remote.timeout>600000</cargo.remote.timeout>
                                     <cargo.remote.password></cargo.remote.password>
+<!--                                    <cargo.datasource.datasource.derby>-->
+<!--                                        cargo.datasource.driver=org.apache.derby.jdbc.EmbeddedDriver|-->
+<!--                                        cargo.datasource.url=jdbc:derby:derbyDB;create=true|-->
+<!--                                        cargo.datasource.jndi=jdbc/__default|-->
+<!--                                        cargo.datasource.transactionsupport=LOCAL_TRANSACTION|-->
+<!--                                        cargo.datasource.username=APP|-->
+<!--                                        cargo.datasource.password=nonemptypassword-->
+<!--                                    </cargo.datasource.datasource.derby>-->
                                 </properties>
                             </configuration>
                         </configuration>

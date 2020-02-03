@@ -1,6 +1,7 @@
 package com.example.it;
 
 import com.example.Bootstrap;
+import com.example.Resources;
 import com.example.config.JaxrsActivator;
 import com.example.domain.Task;
 import com.example.web.PagedResult;
@@ -43,7 +44,9 @@ public class TaskResourceTest {
                 .addPackage(Task.class.getPackage())
                 .addPackage(JaxrsActivator.class.getPackage())
                 .addPackage(TaskResources.class.getPackage())
-                .addAsManifestResource(new File("src/main/resources/META-INF/persistence.xml"), "persistence.xml")
+                //Add JPA persistence configuration.
+                //WARN: In a war package, persistence.xml should be put into /WEB-INF/classes/META-INF/, not /META-INF
+                .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 // Enable CDI
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 
