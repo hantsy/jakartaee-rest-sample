@@ -456,6 +456,13 @@
                 <skipTests>false</skipTests>
             </properties>
             <dependencies>
+			
+				<dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee8</artifactId>
+                    <version>${arquillian-payara-server.version}</version>
+                    <scope>test</scope>
+                </dependency>
 
                 <!-- Payara Server Container adaptor  -->
                 <dependency>
