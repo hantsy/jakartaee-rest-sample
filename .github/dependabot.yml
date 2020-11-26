@@ -16,4 +16,7 @@ updates:
       # Ignore only new versions for 4.x
       versions: ["3.x, 4.x"]
     - dependency-name: "jakarta.jakartaee-api"
+    - dependency-name: "glassfish"
+    - dependency-name: "jersey"
+    - dependency-name: "eclipselink"
           
