@@ -13,6 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Jakarta EE API -->
@@ -48,7 +49,7 @@
         <resteasy.version>3.9.0.Final</resteasy.version>
         
         <!-- OpenLiberty server -->
-        <liberty.runtime.version>20.0.0.1</liberty.runtime.version>     
+        <liberty.runtime.version>20.0.0.12</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.3.1</liberty-maven-plugin.version>
@@ -183,14 +184,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!--<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <skipTests>${skipTests}</skipTests>
-                </configuration>
-            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -206,9 +199,6 @@
                             <excludes>
                                 <exclude>**/it/**</exclude>
                             </excludes>
-                            <reportsDirectory>
-                                ${project.build.directory}/test-reports/unit
-                            </reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -232,9 +222,6 @@
                             <includes>
                                 <include>**/it/**</include>
                             </includes>
-                            <reportsDirectory>
-                                ${project.build.directory}/test-reports/it
-                            </reportsDirectory>
                         </configuration>
                     </execution>
                 </executions>
@@ -354,25 +341,20 @@
                                     <cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
                                     <cargo.remote.timeout>600000</cargo.remote.timeout>
                                     <cargo.remote.password></cargo.remote.password>
-<!--                                    <cargo.datasource.datasource.derby>-->
-<!--                                        cargo.datasource.driver=org.apache.derby.jdbc.EmbeddedDriver|-->
-<!--                                        cargo.datasource.url=jdbc:derby:derbyDB;create=true|-->
-<!--                                        cargo.datasource.jndi=jdbc/__default|-->
-<!--                                        cargo.datasource.transactionsupport=LOCAL_TRANSACTION|-->
-<!--                                        cargo.datasource.username=APP|-->
-<!--                                        cargo.datasource.password=nonemptypassword-->
-<!--                                    </cargo.datasource.datasource.derby>-->
+                                    <!-- add extra datasource :
+                                    https://codehaus-cargo.github.io/cargo/DataSource+and+Resource+Support.html
+                                    -->
+                                    <!--<cargo.datasource.datasource.derby>
+                                        cargo.datasource.driver=org.apache.derby.jdbc.EmbeddedDriver|
+                                        cargo.datasource.url=jdbc:derby:derbyDB;create=true|
+                                        cargo.datasource.jndi=jdbc/__default|
+                                        cargo.datasource.transactionsupport=LOCAL_TRANSACTION|
+                                        cargo.datasource.username=APP|
+                                        cargo.datasource.password=nonemptypassword
+                                    </cargo.datasource.datasource.derby>-->
                                 </properties>
                             </configuration>
                         </configuration>
-                        <!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.glassfish.main.deployment</groupId>
-                                <artifactId>deployment-client</artifactId>
-                                <version>${glassfish.version}</version>
-                            </dependency>
-                        </dependencies>
                     </plugin>
                 </plugins>
 
