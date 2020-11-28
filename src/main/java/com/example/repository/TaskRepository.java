@@ -1,8 +1,9 @@
-package com.example.domain;
+package com.example.repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import com.example.common.persistence.AbstractRepository;
+import com.example.domain.Task;
+import com.example.domain.Task_;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,20 +12,19 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author hantsy
  */
 @Stateless
-public class TaskRepository {
+public class TaskRepository extends AbstractRepository<Task, Long> {
 
     @PersistenceContext
     EntityManager em;
-
-    public Optional<Task> findOptionalById(Long id) {
-        Task task = em.find(Task.class, id);
-        return Optional.ofNullable(task);
-    }
 
     public long countByKeyword(String keyword, Task.Status status) {
         CriteriaBuilder cb = this.em.getCriteriaBuilder();
@@ -78,20 +78,14 @@ public class TaskRepository {
         return query.getResultList();
     }
 
-    public Task save(Task task) {
-        em.persist(task);
-
-        return task;
+    public List<Task> findByCreatedBy(String name) {
+        Objects.requireNonNull(name, "username can not be null");
+        return this.stream().filter(t -> name.equals(t.getCreatedBy().getUsername())).collect(Collectors.toList());
     }
 
-    public Task update(Task task) {
-        return em.merge(task);
+    @Override
+    protected EntityManager entityManager() {
+        return this.em;
     }
-
-    public void delete(Task task) {
-        task = em.merge(task);
-        em.remove(task);
-    }
-
 
 }

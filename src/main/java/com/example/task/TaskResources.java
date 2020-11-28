@@ -1,7 +1,9 @@
-package com.example.web;
+package com.example.task;
 
+import com.example.common.web.PageParam;
 import com.example.domain.Task;
-import com.example.domain.TaskRepository;
+import com.example.repository.TaskRepository;
+import com.example.common.web.PagedResult;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

@@ -1,19 +1,16 @@
-package com.example.web;
+package com.example.task;
 
 import com.example.domain.Task;
 import com.example.domain.TaskNotFoundException;
-import com.example.domain.TaskRepository;
+import com.example.repository.TaskRepository;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,7 +48,7 @@ public class TaskResource {
                     data.setName(form.getName());
                     data.setDescription(form.getDescription());
 
-                    taskRepository.update(data);
+                    taskRepository.save(data);
                     return noContent().build();
                 })
                 .orElseThrow(() -> new TaskNotFoundException(id));
@@ -75,7 +72,7 @@ public class TaskResource {
         return taskRepository.findOptionalById(id)
                 .map(data -> {
                     data.setStatus(finalTaskStatus);
-                    taskRepository.update(data);
+                    taskRepository.save(data);
                     return noContent().build();
                 })
                 .orElseThrow(() -> new TaskNotFoundException(id));

@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.task;
 
 import com.example.domain.TaskNotFoundException;
 
@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author hantsy
  */
 @Provider
-public class PostNotFoundExceptionMapper implements ExceptionMapper<TaskNotFoundException> {
+public class TaskNotFoundExceptionMapper implements ExceptionMapper<TaskNotFoundException> {
 
     @Inject
     Logger log;

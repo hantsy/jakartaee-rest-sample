@@ -1,10 +1,10 @@
 package com.example.it;
 
 import com.example.Bootstrap;
-import com.example.config.JaxrsActivator;
+import com.example.ApplicationConfig;
 import com.example.domain.Task;
-import com.example.web.PagedResult;
-import com.example.web.TaskResources;
+import com.example.common.web.PagedResult;
+import com.example.task.TaskResources;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -39,7 +39,7 @@ public class TaskResourceTest {
         WebArchive war = ShrinkWrap.create(WebArchive.class)
                 .addPackage(Bootstrap.class.getPackage())
                 .addPackage(Task.class.getPackage())
-                .addPackage(JaxrsActivator.class.getPackage())
+                .addPackage(ApplicationConfig.class.getPackage())
                 .addPackage(TaskResources.class.getPackage())
                 //Add JPA persistence configuration.
                 //WARN: In a war archive, persistence.xml should be put into /WEB-INF/classes/META-INF/, not /META-INF

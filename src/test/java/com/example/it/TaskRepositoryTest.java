@@ -1,7 +1,7 @@
 package com.example.it;
 
 import com.example.domain.Task;
-import com.example.domain.TaskRepository;
+import com.example.repository.TaskRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;

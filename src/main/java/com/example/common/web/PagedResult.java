@@ -1,7 +1,10 @@
-package com.example.web;
+package com.example.common.web;
+
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class PagedResult<T> {
     private List<T> content;
     private long count;
@@ -16,19 +19,4 @@ public class PagedResult<T> {
         return result;
     }
 
-    public List<T> getContent() {
-        return content;
-    }
-
-    public void setContent(List<T> content) {
-        this.content = content;
-    }
-
-    public long getCount() {
-        return count;
-    }
-
-    public void setCount(long count) {
-        this.count = count;
-    }
 }

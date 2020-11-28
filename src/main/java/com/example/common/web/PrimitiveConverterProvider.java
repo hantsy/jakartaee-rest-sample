@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.config;
+package com.example.common.web;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
