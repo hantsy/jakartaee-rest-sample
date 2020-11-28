@@ -14,13 +14,20 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <!-- since 3.0 it is set by default -->
+        <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
+
+        <!-- use Java 11 as default -->
+        <maven.compiler.release>11</maven.compiler.release>
 
         <!-- Jakarta EE API -->
         <jakartaee-api.version>8.0.0</jakartaee-api.version>
-        
+        <microprofile.version>3.3</microprofile.version>
+        <jjwt.version>0.11.2</jjwt.version>
+
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
         <cargo-maven2-plugin.version>1.8.2</cargo-maven2-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
@@ -29,7 +36,7 @@
 
         <!-- Arquillian BOM -->
         <arquillian-bom.version>1.6.0.Final</arquillian-bom.version>
-        
+
         <!-- Glassfish server -->
         <glassfish.version>5.1.0</glassfish.version>
         <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
@@ -47,13 +54,13 @@
         <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
         <undertow-websockets-jsr.version>2.0.26.Final</undertow-websockets-jsr.version>
         <resteasy.version>3.9.0.Final</resteasy.version>
-        
+
         <!-- OpenLiberty server -->
         <liberty.runtime.version>20.0.0.12</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.3.1</liberty-maven-plugin.version>
-        
+
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
     </properties>
@@ -64,6 +71,13 @@
                 <artifactId>jakarta.jakartaee-api</artifactId>
                 <version>${jakartaee-api.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.microprofile</groupId>
+                <artifactId>microprofile</artifactId>
+                <version>${microprofile.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
@@ -131,6 +145,36 @@
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.config</groupId>
+            <artifactId>microprofile-config-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.14</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- or jjwt-gson if Gson is preferred -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
@@ -179,10 +223,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -247,7 +292,7 @@
         <profile>
             <id>openliberty</id>
             <build>
-                <plugins> 
+                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
@@ -258,9 +303,9 @@
                                 <phase>package</phase>
                                 <goals>
                                     <goal>copy</goal>
-                                </goals>   
+                                </goals>
                             </execution>
-                        </executions>                     
+                        </executions>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
@@ -271,9 +316,10 @@
                                     <overWrite>false</overWrite>
                                 </artifactItem>
                             </artifactItems>
-                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources</outputDirectory>
-                        </configuration>                                    
-                    </plugin>             
+                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources
+                            </outputDirectory>
+                        </configuration>
+                    </plugin>
                     <!-- Enable liberty-maven-plugin -->
                     <plugin>
                         <groupId>io.openliberty.tools</groupId>
@@ -284,9 +330,9 @@
             </build>
         </profile>
         <profile>
-            <id>glassfish-local</id>
+            <id>payara-local</id>
             <properties>
-                <glassfish.home>${project.build.directory}/glassfish5</glassfish.home>
+                <glassfish.home>${project.build.directory}/payara5</glassfish.home>
                 <glassfish.domainDir>${glassfish.home}/glassfish/domains</glassfish.domainDir>
                 <glassfish.domainName>domain1</glassfish.domainName>
             </properties>
@@ -306,17 +352,10 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <!--
-                                             <groupId>fish.payara.distributions</groupId>
+                                            <groupId>fish.payara.distributions</groupId>
                                             <artifactId>payara</artifactId>
                                             <version>${payara.version}</version>
                                             <type>zip</type>
-                                            -->
-                                            <groupId>org.glassfish.main.distributions</groupId>
-                                            <artifactId>glassfish</artifactId>
-                                            <version>${glassfish.version}</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
@@ -339,7 +378,7 @@
                                 <home>${glassfish.domainDir}</home>
                                 <properties>
                                     <cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
-                                    <cargo.remote.timeout>600000</cargo.remote.timeout>
+                                    <cargo.remote.timeout>300000</cargo.remote.timeout>
                                     <cargo.remote.password></cargo.remote.password>
                                     <!-- add extra datasource :
                                     https://codehaus-cargo.github.io/cargo/DataSource+and+Resource+Support.html
@@ -357,16 +396,16 @@
                         </configuration>
                     </plugin>
                 </plugins>
-
             </build>
         </profile>
         <profile>
-            <id>glassfish-remote</id>
+            <id>payara-remote</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.cargo</groupId>
                         <artifactId>cargo-maven2-plugin</artifactId>
+                        <version>${cargo-maven2-plugin.version}</version>
                         <configuration>
                             <container>
                                 <containerId>glassfish5x</containerId>
@@ -375,10 +414,10 @@
                             <configuration>
                                 <type>runtime</type>
                                 <properties>
-                                    <!--   <cargo.remote.username>admin</cargo.remote.username>
-                                    <cargo.remote.password>adminadmin</cargo.remote.password>
+                                    <cargo.remote.username>admin</cargo.remote.username>
+                                    <cargo.remote.password></cargo.remote.password>
                                     <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
-                                    <cargo.hostname>localhost</cargo.hostname>-->
+                                    <cargo.hostname>localhost</cargo.hostname>
                                 </properties>
                             </configuration>
                         </configuration>
@@ -389,13 +428,16 @@
                                 <artifactId>deployment-client</artifactId>
                                 <version>${glassfish.version}</version>
                             </dependency>
+                            <dependency>
+                                <groupId>org.glassfish.jaxb</groupId>
+                                <artifactId>jaxb-runtime</artifactId>
+                                <version>2.3.3</version>
+                            </dependency>
                         </dependencies>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-      
-
         <profile>
             <id>arq-payara-embedded</id>
             <properties>
@@ -430,7 +472,6 @@
                     </plugin>
                 </plugins>
             </build>
-
         </profile>
         <profile>
             <id>arq-payara-managed</id>
@@ -438,14 +479,12 @@
                 <skipTests>false</skipTests>
             </properties>
             <dependencies>
-			
-				<dependency>
+                <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee8</artifactId>
                     <version>${arquillian-payara-server.version}</version>
                     <scope>test</scope>
                 </dependency>
-
                 <!-- Payara Server Container adaptor  -->
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>

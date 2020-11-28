@@ -1,7 +1,8 @@
 package com.example.it;
 
+import com.example.common.persistence.AbstractEntity;
 import com.example.domain.Task;
-import com.example.domain.TaskRepository;
+import com.example.repository.TaskRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -26,7 +27,9 @@ public class TaskRepositoryTest {
     @Deployment()
     public static JavaArchive createDeployment() {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class)
+                .addPackage(AbstractEntity.class.getPackage())
                 .addPackage(Task.class.getPackage())
+                .addClass(TaskRepository.class)
                 //Add JPA persistence configuration.
                 //WARN: In a jar archive, persistence.xml should be put into /META-INF
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml");
