@@ -1,7 +1,6 @@
 package com.example.task;
 
 import com.example.domain.Task;
-import com.example.domain.TaskNotFoundException;
 import com.example.repository.TaskRepository;
 
 import javax.annotation.PostConstruct;

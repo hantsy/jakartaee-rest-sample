@@ -5,8 +5,8 @@
  */
 package com.example.security.jwt;
 
-import com.example.context.Authenticated;
-import com.example.context.UserInfo;
+import com.example.security.Authenticated;
+import com.example.security.UserInfo;
 import io.jsonwebtoken.ExpiredJwtException;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -25,18 +25,16 @@ import javax.ws.rs.core.HttpHeaders;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.example.Constants.AUTHORIZATION_PREFIX;
-import static com.example.Constants.REMEMBERME_VALIDITY_SECONDS;
-
 /**
  * @author hantsy
  */
 @RememberMe(
-        cookieMaxAgeSeconds = REMEMBERME_VALIDITY_SECONDS,
+        cookieMaxAgeSecondsExpression ="jwtProperties.remembermeValidityInSeconds" ,
         isRememberMeExpression = "self.isRememberMe(httpMessageContext)"
 )
 @ApplicationScoped
 public class JwtAuthenticationMechanism implements HttpAuthenticationMechanism {
+    public static final String AUTHORIZATION_PREFIX = "Bearer ";
 
     @Inject
     Logger LOGGER;

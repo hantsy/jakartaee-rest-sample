@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.common.persistence;
+package com.example.common.persistence.entitylisteners;
 
-import com.example.context.Authenticated;
-import com.example.context.UserInfo;
+import com.example.common.persistence.AbstractAuditableEntity;
+import com.example.common.persistence.Username;
+import com.example.security.Authenticated;
+import com.example.security.UserInfo;
 
 import javax.enterprise.inject.spi.CDI;
 import javax.persistence.PrePersist;
@@ -19,9 +21,9 @@ import java.util.logging.Logger;
  *
  * @author hantsy
  */
-public class AuditEntityListener {
+public class AuditingEntityListener {
 
-    private static final Logger LOG = Logger.getLogger(AuditEntityListener.class.getName());
+    private static final Logger LOG = Logger.getLogger(AuditingEntityListener.class.getName());
 
     @PrePersist
     public void beforePersist(Object entity) {

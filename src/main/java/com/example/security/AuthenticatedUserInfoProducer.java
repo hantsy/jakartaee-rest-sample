@@ -1,4 +1,4 @@
-package com.example.context;
+package com.example.security;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;

@@ -22,7 +22,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class Existed implements Serializable {
+public class Existence implements Serializable {
 
     private boolean existed = false;
 }

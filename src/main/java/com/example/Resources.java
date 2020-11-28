@@ -1,4 +1,4 @@
-package com.example.context;
+package com.example;
 
 import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;

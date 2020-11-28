@@ -7,6 +7,7 @@ package com.example.common.persistence;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.lang.reflect.ParameterizedType;
@@ -15,12 +16,11 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- *
- * @author hantsy
- * @param <T> Entity type.
+ * @param <T>  Entity type.
  * @param <ID> Entity ID type.
+ * @author hantsy
  */
-public abstract class AbstractRepository<T extends AbstractEntity, ID> {
+public abstract class AbstractRepository<T extends AbstractEntity<ID>, ID> {
 
     protected abstract EntityManager entityManager();
 
@@ -60,9 +60,18 @@ public abstract class AbstractRepository<T extends AbstractEntity, ID> {
         return true;
     }
 
-    public void deleteById(ID id) {
-        T _entity = findById(id);
-        entityManager().remove(_entity);
+    public int deleteAll() {
+        CriteriaBuilder cb = this.entityManager().getCriteriaBuilder();
+        CriteriaDelete<T> q = cb.createCriteriaDelete(entityClass());
+        return entityManager().createQuery(q).executeUpdate();
+    }
+
+    public int deleteById(ID id) {
+        CriteriaBuilder cb = this.entityManager().getCriteriaBuilder();
+        CriteriaDelete<T> q = cb.createCriteriaDelete(entityClass());
+        Root<T> c = q.from(entityClass());
+        q.where(cb.equal(c.get("id"), id));
+        return entityManager().createQuery(q).executeUpdate();
     }
 
     public Stream<T> stream() {

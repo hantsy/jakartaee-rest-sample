@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.example.task;
 
 public class TaskNotFoundException extends RuntimeException {
 

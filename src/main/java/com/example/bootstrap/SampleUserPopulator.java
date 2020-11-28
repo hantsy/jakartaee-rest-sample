@@ -1,8 +1,6 @@
-package com.example;
+package com.example.bootstrap;
 
-import com.example.domain.Task;
 import com.example.domain.User;
-import com.example.repository.TaskRepository;
 import com.example.repository.UserRepository;
 import com.example.security.hash.Crypto;
 import com.example.security.hash.PasswordEncoder;
@@ -17,21 +15,18 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.example.Constants.ROLE_ADMIN;
-import static com.example.Constants.ROLE_USER;
+import static com.example.RoleNames.ADMIN;
+import static com.example.RoleNames.USER;
 
 /**
  * @author hantsy
  */
 @Startup
 @Singleton
-public class Bootstrap {
+public class SampleUserPopulator {
 
     @Inject
     Logger LOG;
-
-    @Inject
-    TaskRepository taskRepository;
 
     @Inject
     UserRepository users;
@@ -44,13 +39,16 @@ public class Bootstrap {
     public void init() {
         LOG.log(Level.INFO, " >> startup application ...");
 
+        var deleted = this.users.deleteAll();
+        LOG.log(Level.INFO, " deleted existed users: {0}", new Object[]{deleted});
+
         var user = User.builder()
                 .username("user")
                 .password(passwordHash.encode("password"))
                 .firstName("user firstName")
                 .lastName("user lastName")
                 .email("user@example.com")
-                .authorities(Set.of(ROLE_USER))
+                .authorities(Set.of(USER))
                 .build();
 
         var admin = User.builder()
@@ -59,24 +57,12 @@ public class Bootstrap {
                 .firstName("admin firstName")
                 .lastName("admin lastName")
                 .email("admin@example.com")
-                .authorities(Set.of(ROLE_USER, ROLE_ADMIN))
+                .authorities(Set.of(USER, ADMIN))
                 .build();
 
         Stream.of(user, admin)
                 .map(u -> users.save(u))
                 .collect(Collectors.toList())
                 .forEach(u -> LOG.log(Level.INFO, "saved user: {0}", new Object[]{u}));
-
-        Stream.of("first", "second")
-                .map(s -> {
-                    Task task = new Task();
-                    task.setName("My " + s + " task");
-                    task.setDescription("The description of my " + s + " task");
-                    task.setStatus(Task.Status.TODO);
-                    return task;
-                })
-                .map(data -> taskRepository.save(data))
-                .collect(Collectors.toList())
-                .forEach(task -> LOG.log(Level.INFO, "saved task: {0}", new Object[]{task}));
     }
 }

@@ -1,4 +1,4 @@
-package com.example.common.web;
+package com.example.common.web.exceptionMapper;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Path;

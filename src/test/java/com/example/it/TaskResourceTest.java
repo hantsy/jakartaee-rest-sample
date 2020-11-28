@@ -1,9 +1,12 @@
 package com.example.it;
 
-import com.example.Bootstrap;
 import com.example.ApplicationConfig;
-import com.example.domain.Task;
+import com.example.bootstrap.SampleTasksPopulator;
+import com.example.common.persistence.AbstractEntity;
+import com.example.common.web.PageParam;
 import com.example.common.web.PagedResult;
+import com.example.domain.Task;
+import com.example.repository.TaskRepository;
 import com.example.task.TaskResources;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -37,10 +40,22 @@ public class TaskResourceTest {
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
         WebArchive war = ShrinkWrap.create(WebArchive.class)
-                .addPackage(Bootstrap.class.getPackage())
-                .addPackage(Task.class.getPackage())
+                //bootstrap
                 .addPackage(ApplicationConfig.class.getPackage())
+
+                // entities
+                .addPackage(AbstractEntity.class.getPackage())
+                .addPackage(Task.class.getPackage())
+
+                //repositories
+                .addPackage(TaskRepository.class.getPackage())
+
+                //sample data
+                .addClass(SampleTasksPopulator.class)
+
+                // rest
                 .addPackage(TaskResources.class.getPackage())
+                .addPackage(PageParam.class.getPackage())
                 //Add JPA persistence configuration.
                 //WARN: In a war archive, persistence.xml should be put into /WEB-INF/classes/META-INF/, not /META-INF
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")

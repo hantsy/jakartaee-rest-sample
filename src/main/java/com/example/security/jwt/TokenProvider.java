@@ -20,8 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import static com.example.Constants.REMEMBERME_VALIDITY_SECONDS;
-import static com.example.Constants.TOKEN_VALIDITY_SECONDS;
 import static java.util.stream.Collectors.joining;
 
 /**
@@ -33,8 +31,10 @@ public class TokenProvider {
     @Inject
     Logger LOGGER;
 
+    @Inject
+    JwtProperties properties;
+
     private static final String AUTHORITIES_KEY = "auth";
-    private static final String DEFAULT_SECRET_KEY = "rzxlszyykpbgqcflzxsqcysyhljt";
 
     private Key secretKey;
 
@@ -44,10 +44,10 @@ public class TokenProvider {
 
     @PostConstruct
     public void init() {
-        byte[] secret = Base64.getEncoder().encode(DEFAULT_SECRET_KEY.getBytes());
+        byte[] secret = Base64.getEncoder().encode(properties.getSecretKey().getBytes());
         this.secretKey = Keys.hmacShaKeyFor(secret);
-        this.tokenValidity = TimeUnit.SECONDS.toMillis(TOKEN_VALIDITY_SECONDS);
-        this.tokenValidityForRememberMe = TimeUnit.SECONDS.toMillis(REMEMBERME_VALIDITY_SECONDS);
+        this.tokenValidity = TimeUnit.SECONDS.toMillis(properties.getTokenValidityInSeconds());
+        this.tokenValidityForRememberMe = TimeUnit.SECONDS.toMillis(properties.getRemembermeValidityInSeconds());
     }
 
     public String createToken(String username, Set<String> authorities, Boolean rememberMe) {

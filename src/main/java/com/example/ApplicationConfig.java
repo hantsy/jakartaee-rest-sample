@@ -4,10 +4,10 @@ import javax.annotation.security.DeclareRoles;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import static com.example.Constants.ROLE_ADMIN;
-import static com.example.Constants.ROLE_USER;
+import static com.example.RoleNames.ADMIN;
+import static com.example.RoleNames.USER;
 
-@DeclareRoles({ROLE_USER, ROLE_ADMIN})
+@DeclareRoles({USER, ADMIN})
 @ApplicationPath("api")
 public class ApplicationConfig extends Application {
 

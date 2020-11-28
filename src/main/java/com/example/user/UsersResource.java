@@ -7,7 +7,7 @@ package com.example.user;
 
 
 import com.example.domain.Count;
-import com.example.domain.Existed;
+import com.example.domain.Existence;
 import com.example.domain.User;
 import com.example.repository.UserRepository;
 import com.example.security.hash.Crypto;
@@ -64,11 +64,11 @@ public class UsersResource {
     @Path("exists")
     public Response exists(@QueryParam("username") String username, @QueryParam("email") String email) {
         if (username != null && username.length() > 0) {
-            return ok(Existed.builder().existed(users.findByUsername(username).isPresent()).build()).build();
+            return ok(Existence.builder().existed(users.findByUsername(username).isPresent()).build()).build();
         }
 
         if (email != null && email.length() > 0) {
-            return ok(Existed.builder().existed(users.findByEmail(email).isPresent()).build()).build();
+            return ok(Existence.builder().existed(users.findByEmail(email).isPresent()).build()).build();
         }
 
         return status(BAD_REQUEST)

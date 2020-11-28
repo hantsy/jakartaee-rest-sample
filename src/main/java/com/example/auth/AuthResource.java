@@ -5,8 +5,8 @@
  */
 package com.example.auth;
 
-import com.example.context.Authenticated;
-import com.example.context.UserInfo;
+import com.example.security.Authenticated;
+import com.example.security.UserInfo;
 
 import javax.inject.Inject;
 import javax.json.Json;

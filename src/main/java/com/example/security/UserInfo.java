@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.context;
+package com.example.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

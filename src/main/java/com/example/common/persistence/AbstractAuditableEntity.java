@@ -10,7 +10,6 @@ import lombok.Setter;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
-import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
@@ -22,7 +21,8 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @Setter
 @Getter
-@EntityListeners(AuditEntityListener.class)
+// applied it in orm.xml instead.
+//@EntityListeners(AuditEntityListener.class)
 public class AbstractAuditableEntity<ID> extends AbstractEntity<ID> {
 
     private static final long serialVersionUID = 1L;

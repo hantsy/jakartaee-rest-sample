@@ -1,7 +1,5 @@
 package com.example.task;
 
-import com.example.domain.TaskNotFoundException;
-
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
