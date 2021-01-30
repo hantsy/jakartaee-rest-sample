@@ -1,4 +1,4 @@
-package com.example.infrastructure.security.hash;
+package com.example.application.util.hash;
 
 /**
  * @author hantsy

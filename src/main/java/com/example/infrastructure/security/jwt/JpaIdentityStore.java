@@ -6,9 +6,9 @@
 package com.example.infrastructure.security.jwt;
 
 
-import com.example.domain.UserRepository;
-import com.example.infrastructure.security.hash.Crypto;
-import com.example.infrastructure.security.hash.PasswordEncoder;
+import com.example.domain.user.UserRepository;
+import com.example.application.util.hash.Crypto;
+import com.example.application.util.hash.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.infrastructure.security.hash;
+package com.example.application.util.hash;
 
 
 
-import com.example.infrastructure.security.hash.bcrypt.BCryptPasswordEncoder;
-import com.example.infrastructure.security.hash.plain.PlainPasswordEncoder;
+import com.example.application.util.hash.bcrypt.BCryptPasswordEncoder;
+import com.example.application.util.hash.plain.PlainPasswordEncoder;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;

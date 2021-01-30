@@ -1,8 +1,8 @@
 package com.example.interfaces.task;
 
+import com.example.domain.task.TaskRepository;
 import com.example.interfaces.common.PageParam;
-import com.example.domain.Task;
-import com.example.infrastructure.persistence.jpa.JpaTaskRepository;
+import com.example.domain.task.Task;
 import com.example.interfaces.common.PagedResult;
 
 import javax.annotation.PostConstruct;
@@ -29,7 +29,7 @@ public class TaskResources {
     Logger log;
 
     @Inject
-    JpaTaskRepository taskRepository;
+    TaskRepository taskRepository;
 
     @Context
     ResourceContext resourceContext;

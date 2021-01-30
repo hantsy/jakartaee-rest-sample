@@ -6,8 +6,7 @@
 package com.example.interfaces.user;
 
 
-import com.example.domain.UserRepository;
-import com.example.infrastructure.persistence.jpa.JpaUserRepository;
+import com.example.domain.user.UserRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

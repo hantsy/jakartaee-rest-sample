@@ -1,8 +1,8 @@
 package com.example.infrastructure.persistence.jpa;
 
-import com.example.domain.Task;
-import com.example.domain.TaskRepository;
-import com.example.domain.Task_;
+import com.example.domain.task.Task;
+import com.example.domain.task.TaskRepository;
+import com.example.domain.task.Task_;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

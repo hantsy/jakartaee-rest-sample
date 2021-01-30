@@ -1,7 +1,7 @@
 package com.example.interfaces.task;
 
-import com.example.domain.Task;
-import com.example.infrastructure.persistence.jpa.JpaTaskRepository;
+import com.example.domain.task.Task;
+import com.example.domain.task.TaskRepository;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -25,7 +25,7 @@ public class TaskResource {
     Long id;
 
     @Inject
-    JpaTaskRepository taskRepository;
+    TaskRepository taskRepository;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

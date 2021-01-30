@@ -1,4 +1,4 @@
-package com.example.infrastructure.security.hash;
+package com.example.application.util.hash;
 
 import javax.enterprise.util.Nonbinding;
 import javax.inject.Qualifier;

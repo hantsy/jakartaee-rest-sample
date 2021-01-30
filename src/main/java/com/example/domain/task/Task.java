@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.domain;
+package com.example.domain.task;
 
 import com.example.domain.common.AbstractAuditableEntity;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.function.Function;
 
-import static com.example.domain.Task.Status.TODO;
+import static com.example.domain.task.Task.Status.TODO;
 
 /**
  * @author hantsy

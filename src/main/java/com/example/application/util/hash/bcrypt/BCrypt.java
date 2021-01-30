@@ -11,7 +11,7 @@
 // WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-package com.example.infrastructure.security.hash.bcrypt;
+package com.example.application.util.hash.bcrypt;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;

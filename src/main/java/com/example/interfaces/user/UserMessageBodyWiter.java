@@ -6,7 +6,7 @@
 package com.example.interfaces.user;
 
 
-import com.example.domain.User;
+import com.example.domain.user.User;
 
 import javax.json.bind.JsonbBuilder;
 import javax.json.bind.JsonbConfig;

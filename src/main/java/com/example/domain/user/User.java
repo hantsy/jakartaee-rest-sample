@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.domain;
+package com.example.domain.user;
 
 import com.example.domain.common.AbstractEntity;
 import lombok.*;

@@ -1,7 +1,7 @@
-package com.example.infrastructure.security.hash.plain;
+package com.example.application.util.hash.plain;
 
 
-import com.example.infrastructure.security.hash.PasswordEncoder;
+import com.example.application.util.hash.PasswordEncoder;
 
 /**
  *

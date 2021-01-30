@@ -6,12 +6,12 @@
 package com.example.interfaces.user;
 
 
-import com.example.domain.Count;
-import com.example.domain.Existence;
-import com.example.domain.User;
-import com.example.domain.UserRepository;
-import com.example.infrastructure.security.hash.Crypto;
-import com.example.infrastructure.security.hash.PasswordEncoder;
+import com.example.domain.task.Count;
+import com.example.domain.task.Existence;
+import com.example.domain.user.User;
+import com.example.domain.user.UserRepository;
+import com.example.application.util.hash.Crypto;
+import com.example.application.util.hash.PasswordEncoder;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import static com.example.infrastructure.security.hash.Crypto.Type.BCRYPT;
+import static com.example.application.util.hash.Crypto.Type.BCRYPT;
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 import static javax.ws.rs.core.Response.*;
 

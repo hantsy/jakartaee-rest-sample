@@ -1,8 +1,8 @@
 package com.example.infrastructure.persistence.jpa;
 
 
-import com.example.domain.User;
-import com.example.domain.UserRepository;
+import com.example.domain.user.User;
+import com.example.domain.user.UserRepository;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

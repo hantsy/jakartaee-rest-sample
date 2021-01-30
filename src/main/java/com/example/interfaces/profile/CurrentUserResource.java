@@ -5,9 +5,9 @@
  */
 package com.example.interfaces.profile;
 
-import com.example.domain.Task;
-import com.example.domain.TaskRepository;
-import com.example.domain.UserRepository;
+import com.example.domain.task.Task;
+import com.example.domain.task.TaskRepository;
+import com.example.domain.user.UserRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;

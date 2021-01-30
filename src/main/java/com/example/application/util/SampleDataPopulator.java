@@ -1,11 +1,11 @@
 package com.example.application.util;
 
-import com.example.domain.Task;
-import com.example.domain.TaskRepository;
-import com.example.domain.User;
-import com.example.domain.UserRepository;
-import com.example.infrastructure.security.hash.Crypto;
-import com.example.infrastructure.security.hash.PasswordEncoder;
+import com.example.domain.task.Task;
+import com.example.domain.task.TaskRepository;
+import com.example.domain.user.User;
+import com.example.domain.user.UserRepository;
+import com.example.application.util.hash.Crypto;
+import com.example.application.util.hash.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Singleton;
