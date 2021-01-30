@@ -1,13 +1,13 @@
 package com.example.it;
 
-import com.example.ApplicationConfig;
-import com.example.bootstrap.SampleTasksPopulator;
-import com.example.common.persistence.AbstractEntity;
-import com.example.common.web.PageParam;
-import com.example.common.web.PagedResult;
+import com.example.interfaces.RestConfiguration;
+import com.example.application.util.SampleDataPopulator;
+import com.example.domain.common.AbstractEntity;
+import com.example.interfaces.common.PageParam;
+import com.example.interfaces.common.PagedResult;
 import com.example.domain.Task;
-import com.example.repository.TaskRepository;
-import com.example.task.TaskResources;
+import com.example.infrastructure.persistence.jpa.JpaTaskRepository;
+import com.example.interfaces.task.TaskResources;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -41,17 +41,16 @@ public class TaskResourceTest {
     public static WebArchive createDeployment() {
         WebArchive war = ShrinkWrap.create(WebArchive.class)
                 //bootstrap
-                .addPackage(ApplicationConfig.class.getPackage())
+                .addPackage(RestConfiguration.class.getPackage())
 
                 // entities
-                .addPackage(AbstractEntity.class.getPackage())
                 .addPackage(Task.class.getPackage())
 
                 //repositories
-                .addPackage(TaskRepository.class.getPackage())
+                .addPackage(JpaTaskRepository.class.getPackage())
 
                 //sample data
-                .addClass(SampleTasksPopulator.class)
+                .addClass(SampleDataPopulator.class)
 
                 // rest
                 .addPackage(TaskResources.class.getPackage())

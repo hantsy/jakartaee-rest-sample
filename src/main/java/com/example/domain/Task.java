@@ -5,7 +5,7 @@
  */
 package com.example.domain;
 
-import com.example.common.persistence.AbstractAuditableEntity;
+import com.example.domain.common.AbstractAuditableEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

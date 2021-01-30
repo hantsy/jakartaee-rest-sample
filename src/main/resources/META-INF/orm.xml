@@ -6,7 +6,7 @@
     <persistence-unit-metadata>
         <persistence-unit-defaults>
             <entity-listeners>
-                <entity-listener class="com.example.common.persistence.entitylisteners.AuditingEntityListener"/>
+                <entity-listener class="com.example.domain.common.AuditingEntityListener"/>
             </entity-listeners>
         </persistence-unit-defaults>
     </persistence-unit-metadata>
