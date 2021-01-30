@@ -369,7 +369,7 @@
                         <version>${cargo-maven2-plugin.version}</version>
                         <configuration>
                             <container>
-                                <containerId>glassfish5x</containerId>
+                                <containerId>payara</containerId>
                                 <type>installed</type>
                                 <home>${glassfish.home}</home>
                             </container>
@@ -408,7 +408,7 @@
                         <version>${cargo-maven2-plugin.version}</version>
                         <configuration>
                             <container>
-                                <containerId>glassfish5x</containerId>
+                                <containerId>payara</containerId>
                                 <type>remote</type>
                             </container>
                             <configuration>
@@ -431,7 +431,7 @@
                             <dependency>
                                 <groupId>org.glassfish.jaxb</groupId>
                                 <artifactId>jaxb-runtime</artifactId>
-                                <version>3.0.0</version>
+                                <version>2.3.3</version>
                             </dependency>
                         </dependencies>
                     </plugin>
@@ -481,13 +481,6 @@
             <dependencies>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>payara-client-ee8</artifactId>
-                    <version>${arquillian-payara-server.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <!-- Payara Server Container adaptor  -->
-                <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
                     <artifactId>arquillian-payara-server-managed</artifactId>
                     <version>${arquillian-payara-server.version}</version>
                     <scope>test</scope>
@@ -526,11 +519,8 @@
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/payara5</GLASSFISH_HOME>
-                            </environmentVariables>
-                            <!-- This needs tuning -->
                             <systemPropertyVariables>
+                                <payara.home>${project.build.directory}/payara5</payara.home>
                                 <arquillian.launch>glassfish</arquillian.launch>
                             </systemPropertyVariables>
                         </configuration>
