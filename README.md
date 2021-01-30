@@ -1,6 +1,10 @@
 #  Jakarta EE JAXRS Sample
 
-A Jakarta Restful Web Service Sample application based on the [jakartaee8-starter](https://github.com/hantsy/jakartaee8-starter) boilerplate.
+![compile and build](https://github.com/hantsy/jakartaee-jaxrs-sample/workflows/build/badge.svg)
+![Integration Test with Arquillian Payara Managed Container](https://github.com/hantsy/jakartaee-jaxrs-sample/workflows/it-with-arq-payara-managed/badge.svg)
+
+
+A Jakarta Restful Web Service Sample application based on the [Jakarta EE 8 Starter](https://github.com/hantsy/jakartaee8-starter-boilerplate) boilerplate.
 
 This project is the successor of [Java EE 8 Jaxrs Sample](https://github.com/hantsy/javaee8-jaxrs-sample) and [Java EE 7 Jaxrs Sample](https://github.com/hantsy/ee7-jaxrs-sample), and updated to the new Jakarta EE 8 API, including:
 
