@@ -1,9 +1,14 @@
 version: 2
 updates:
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: weekly
+#    time: "21:00"
 - package-ecosystem: maven
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
     time: "21:00"
   open-pull-requests-limit: 10
   # Overwrite any ignores created using `@dependabot ignore` commands
