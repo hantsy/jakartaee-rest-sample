@@ -65,7 +65,7 @@ public class JwtAuthenticationMechanism implements HttpAuthenticationMechanism {
         String token = extractToken(context);
 
         if (name != null && password != null
-                && "POST".equals(request.getMethod())
+                && "POST".equalsIgnoreCase(request.getMethod())
                 && request.getRequestURI().endsWith("/auth/login")) {
             LOGGER.log(Level.INFO, "user credentials : {0}, {1}", new String[]{name, password});
             // validation of the credential using the identity store

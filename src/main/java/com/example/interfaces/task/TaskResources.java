@@ -1,6 +1,7 @@
 package com.example.interfaces.task;
 
 import com.example.domain.task.TaskRepository;
+import com.example.domain.task.TaskStatus;
 import com.example.interfaces.common.PageParam;
 import com.example.domain.task.Task;
 import com.example.interfaces.common.PagedResult;
@@ -46,9 +47,9 @@ public class TaskResources {
     ) {
         log.log(Level.INFO, "fetching all tasks, keyword: {0} status:{1}", new Object[]{keyword, status});
 
-        Task.Status taskStatus;
+        TaskStatus taskStatus;
         try {
-            taskStatus = Task.Status.valueOf(status);
+            taskStatus = TaskStatus.valueOf(status);
         } catch (Exception e) {
             log.log(Level.SEVERE, "can not parse task status value:{0}", status);
             taskStatus = null;

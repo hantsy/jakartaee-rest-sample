@@ -2,6 +2,7 @@ package com.example.application.util;
 
 import com.example.domain.task.Task;
 import com.example.domain.task.TaskRepository;
+import com.example.domain.task.TaskStatus;
 import com.example.domain.user.User;
 import com.example.domain.user.UserRepository;
 import com.example.application.util.hash.Crypto;
@@ -62,7 +63,7 @@ public class SampleDataPopulator {
                     Task task = new Task();
                     task.setName("My " + s + " task");
                     task.setDescription("The description of my " + s + " task");
-                    task.setStatus(Task.Status.TODO);
+                    task.setStatus(TaskStatus.TODO);
                     return task;
                 })
                 .map(data -> tasks.save(data))

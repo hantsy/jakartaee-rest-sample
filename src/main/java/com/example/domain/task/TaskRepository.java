@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TaskRepository {
-    long countByKeyword(String keyword, Task.Status status);
+    long countByKeyword(String keyword, TaskStatus status);
     
     List<Task> searchByKeyword(String keyword,
-                               Task.Status status,
+                               TaskStatus status,
                                int offset,
                                int limit);
     

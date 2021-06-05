@@ -8,9 +8,7 @@ package com.example.domain.user;
 import com.example.domain.common.AbstractEntity;
 import lombok.*;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
@@ -29,6 +27,7 @@ import java.util.Set;
 public class User extends AbstractEntity<Long> {
 
     @NotBlank
+    @Column(unique = true)
     private String username;
     @NotBlank
     private String password;
@@ -38,7 +37,11 @@ public class User extends AbstractEntity<Long> {
 
     @Email
     @NotBlank
+    @Column(unique = true)
     private String email;
+
+    @Embedded
+    Profile profile;
 
     @ElementCollection()
     private Set<String> authorities = new HashSet<>();

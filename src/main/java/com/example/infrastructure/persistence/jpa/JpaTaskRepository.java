@@ -2,6 +2,7 @@ package com.example.infrastructure.persistence.jpa;
 
 import com.example.domain.task.Task;
 import com.example.domain.task.TaskRepository;
+import com.example.domain.task.TaskStatus;
 import com.example.domain.task.Task_;
 
 import javax.ejb.Stateless;
@@ -27,7 +28,7 @@ public class JpaTaskRepository extends AbstractRepository<Task, Long> implements
     EntityManager em;
 
     @Override
-    public long countByKeyword(String keyword, Task.Status status) {
+    public long countByKeyword(String keyword, TaskStatus status) {
         CriteriaBuilder cb = this.em.getCriteriaBuilder();
         CriteriaQuery<Long> q = cb.createQuery(Long.class);
         Root<Task> c = q.from(Task.class);
@@ -53,7 +54,7 @@ public class JpaTaskRepository extends AbstractRepository<Task, Long> implements
 
     @Override
     public List<Task> searchByKeyword(String keyword,
-                                      Task.Status status,
+                                      TaskStatus status,
                                       int offset,
                                       int limit) {
         CriteriaBuilder cb = this.em.getCriteriaBuilder();

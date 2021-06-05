@@ -5,18 +5,17 @@
  */
 package com.example.domain.task;
 
-import com.example.domain.common.AbstractAuditableEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Min;
 import java.util.Comparator;
 import java.util.function.Function;
 
-import static com.example.domain.task.Task.Status.TODO;
+import static com.example.domain.task.TaskStatus.TODO;
 
 /**
  * @author hantsy
@@ -26,20 +25,18 @@ import static com.example.domain.task.Task.Status.TODO;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Task extends AbstractAuditableEntity<Long> {
+public class Task extends AbstractActivity {
 
     private static final long serialVersionUID = 1L;
 
-    public static enum Status {
-        TODO, DOING, DONE;
-    }
 
     public static Comparator<Task> COMPARATOR = Comparator
             .comparing(Task::getName)
             .thenComparing(Task::getDescription);
 
     public static Function<Task, String> TO_STRING = t
-            -> "Post["
+            -> "Task["
+            + "\n taskId:" + t.getTaskId()
             + "\n title:" + t.getName()
             + "\n content:" + t.getDescription()
             + "\n status:" + t.getStatus()
@@ -56,10 +53,6 @@ public class Task extends AbstractAuditableEntity<Long> {
         return task;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @Column(name = "name")
     private String name;
 
@@ -68,12 +61,29 @@ public class Task extends AbstractAuditableEntity<Long> {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private Status status = TODO;
+    private TaskStatus status = TODO;
 
-    @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    @Embedded
+    private TaskIdentifier taskId;
 
-    @Column(name = "last_modified_date")
-    private LocalDateTime lastModifiedDate;
+    @Min(value = 0)
+    private int estimatedDuration;
+
+    @Min(value = 0)
+    private int duration;
+
+    @Embedded
+    private CheckList checkList;
+
+    @Embedded
+    private TimeTracker tracker;
+
+    public void startTracker(String remarks) {
+        this.tracker.start(remarks);
+    }
+
+    public void stopTracker(String remarks) {
+        this.tracker.stop();
+    }
 
 }

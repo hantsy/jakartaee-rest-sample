@@ -1,7 +1,7 @@
 package com.example.interfaces.task;
 
-import com.example.domain.task.Task;
 import com.example.domain.task.TaskRepository;
+import com.example.domain.task.TaskStatus;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -59,15 +59,15 @@ public class TaskResource {
     public Response updateStatus(@Valid UpdateStatusRequest status) {
         log.log(Level.INFO, "updating status of the existed task@id:{0}, status:{1}", new Object[]{id, status});
 
-        Task.Status taskStatus = null;
+        TaskStatus taskStatus = null;
         try {
-            taskStatus = Task.Status.valueOf(status.getStatus());
+            taskStatus = TaskStatus.valueOf(status.getStatus());
         } catch (Exception e) {
             log.log(Level.SEVERE, "can not parse task status value:{}", status);
             taskStatus = null;
         }
 
-        Task.Status finalTaskStatus = taskStatus;
+        TaskStatus finalTaskStatus = taskStatus;
         return taskRepository.findOptionalById(id)
                 .map(data -> {
                     data.setStatus(finalTaskStatus);
