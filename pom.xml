@@ -23,7 +23,7 @@
         <!-- Jakarta EE API -->
         <jakartaee-api.version>8.0.0</jakartaee-api.version>
         <microprofile.version>4.1</microprofile.version>
-        <jjwt.version>0.11.2</jjwt.version>
+        <jjwt.version>0.11.3</jjwt.version>
 
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
