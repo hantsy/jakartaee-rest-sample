@@ -24,7 +24,7 @@ public class Project extends AbstractAuditableEntity<Long> {
     List<Milestone> milestones = new ArrayList<>();
 
     @OneToMany
-    List<Milestone> tasks = new ArrayList<>();
+    List<Task> tasks = new ArrayList<>();
 
     @Embedded
     Progress progress;
@@ -33,8 +33,22 @@ public class Project extends AbstractAuditableEntity<Long> {
 
     public TaskIdentifier nextTaskId() {
         var id = TaskIdentifier.of(this.getProjectId() + "-" + this.getNextTaskNumber());
-        this.nextTaskNumber= this.getNextTaskNumber()+1;
+        this.nextTaskNumber = this.getNextTaskNumber() + 1;
         return id;
     }
 
+    public void addMilestone(Milestone newMilestone) {
+        newMilestone.setProject(this);
+        milestones.add(newMilestone);
+    }
+
+    public void addTask(Milestone milestone, Task newTask) {
+        newTask.setMilestone(milestone);
+        newTask.setProject(this);
+        tasks.add(newTask);
+    }
+
+    public void refreshProgress() {
+        //...
+    }
 }

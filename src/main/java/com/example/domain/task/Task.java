@@ -5,10 +5,7 @@
  */
 package com.example.domain.task;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -21,10 +18,9 @@ import static com.example.domain.task.TaskStatus.TODO;
  * @author hantsy
  */
 @Entity
-@Data
-@AllArgsConstructor
+@Setter
+@Getter
 @NoArgsConstructor
-@Builder
 public class Task extends AbstractActivity {
 
     private static final long serialVersionUID = 1L;
@@ -67,7 +63,7 @@ public class Task extends AbstractActivity {
     private TaskIdentifier taskId;
 
     @Min(value = 0)
-    private int estimatedDuration;
+    private int estimatedDuration; // in hours
 
     @Min(value = 0)
     private int duration;
@@ -77,6 +73,11 @@ public class Task extends AbstractActivity {
 
     @Embedded
     private TimeTracker tracker;
+
+    @ManyToOne
+    private Project project;
+    @ManyToOne
+    private Milestone milestone;
 
     public void startTracker(String remarks) {
         this.tracker.start(remarks);

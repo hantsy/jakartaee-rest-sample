@@ -15,7 +15,7 @@ public class CheckList implements Serializable {
 
     public int progressPercentage() {
         if (this.items.isEmpty()) {
-            throw new IllegalArgumentException("empty checklist should contain progress computation.");
+            throw new IllegalArgumentException("empty checklist should NOT contain progress computation.");
         }
         int size = this.items.size();
         var completed = this.items.entrySet().stream()
