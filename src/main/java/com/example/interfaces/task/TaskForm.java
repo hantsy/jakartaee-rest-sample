@@ -2,8 +2,8 @@ package com.example.interfaces.task;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 
 @Data
@@ -17,6 +17,4 @@ public class TaskForm implements Serializable {
     @NotBlank
     @Size(min = 10, max = 2000)
     private String description;
-
-
 }

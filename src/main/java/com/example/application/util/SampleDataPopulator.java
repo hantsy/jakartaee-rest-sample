@@ -7,12 +7,12 @@ import com.example.domain.user.UserRepository;
 import com.example.application.util.hash.Crypto;
 import com.example.application.util.hash.PasswordEncoder;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;

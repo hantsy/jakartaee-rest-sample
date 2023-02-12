@@ -4,9 +4,9 @@ package com.example.infrastructure.persistence.jpa;
 import com.example.domain.user.User;
 import com.example.domain.user.UserRepository;
 
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.ejb.Stateless;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.util.Objects;
 import java.util.Optional;
 
