@@ -30,10 +30,6 @@ public class AuditingEntityListener {
             final LocalDateTime now = LocalDateTime.now();
             o.setCreatedDate(now);
             o.setLastModifiedDate(now);
-
-            if (o.getCreatedBy() == null) {
-                o.setCreatedBy(currentUser());
-            }
         }
     }
 
@@ -42,24 +38,6 @@ public class AuditingEntityListener {
         if (entity instanceof AbstractAuditableEntity) {
             AbstractAuditableEntity o = (AbstractAuditableEntity) entity;
             o.setLastModifiedDate(LocalDateTime.now());
-
-            if (o.getLastModifiedBy() == null) {
-                o.setLastModifiedBy(currentUser());
-            }
         }
-    }
-
-    private Username currentUser() {
-        try {
-            UserInfo user = CDI.current().select(UserInfo.class, Authenticated.INSTANCE).get();
-            LOG.log(Level.INFO, "set username for entity in AuditEntityListener: {0}", user);
-            if (user == null) {
-                return null;
-            }
-            return new Username(user.getName());
-        } catch (Exception e) {
-            return null;
-        }
-
     }
 }

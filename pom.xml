@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>jakartaee-jaxrs-sample</name>
-    <description>A Jakarta EE MVC sample project</description>
+    <description>A Jakarta EE 10 REST sample project</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,49 +17,30 @@
         <!-- since 3.0 it is set by default -->
         <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
 
-        <!-- use Java 11 as default -->
-        <maven.compiler.release>11</maven.compiler.release>
+        <!-- use Java 17 as default -->
+        <maven.compiler.release>17</maven.compiler.release>
 
         <!-- Jakarta EE API -->
-        <jakartaee-api.version>8.0.0</jakartaee-api.version>
-        <microprofile.version>4.1</microprofile.version>
-        <jjwt.version>0.11.5</jjwt.version>
+        <jakartaee-api.version>10.0.0</jakartaee-api.version>
+        <microprofile.version>6.0</microprofile.version>
 
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-        <cargo-maven2-plugin.version>1.8.5</cargo-maven2-plugin.version>
+        <cargo-maven3-plugin.version>1.10.5</cargo-maven3-plugin.version>
         <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>3.0.0-M8</maven-surefire-report-plugin.version>
 
         <!-- Arquillian BOM -->
-        <arquillian-bom.version>1.6.0.Final</arquillian-bom.version>
+        <arquillian-bom.version>1.7.0.Alpha14</arquillian-bom.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>5.1.0</glassfish.version>
-        <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
-        <jersey.version>2.28</jersey.version>
-        <eclipselink.version>2.7.11</eclipselink.version>
-
-        <!-- Payara server -->
-        <payara.version>5.2022.4</payara.version>
-        <arquillian-payara.version>2.4.6</arquillian-payara.version>
-
-        <!-- Wildfly server-->
-        <wildfly.version>21.0.1.Final</wildfly.version>
-        <wildfly-maven-plugin.version>4.0.0.Final</wildfly-maven-plugin.version>
-        <wildfly-arquillian.version>2.2.0.Final</wildfly-arquillian.version>
-        <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
-        <undertow-websockets-jsr.version>2.0.26.Final</undertow-websockets-jsr.version>
-        <resteasy.version>3.9.0.Final</resteasy.version>
-
-        <!-- OpenLiberty server -->
-        <liberty.runtime.version>20.0.0.12</liberty.runtime.version>
-        <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
-        <derby.version>10.14.2.0</derby.version>
-        <liberty-maven-plugin.version>3.7.1</liberty-maven-plugin.version>
+        <glassfish.version>7.0.1</glassfish.version>
+        <jersey.version>3.1.1</jersey.version>
+        <eclipselink.version>4.0.1-RC1</eclipselink.version>
+        <arquillian-glassfish-jakarta.version>9a3d1129</arquillian-glassfish-jakarta.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
@@ -86,25 +67,18 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
-
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.13.2</version>
-                <scope>test</scope>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.9.2</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest</artifactId>
                 <version>2.2</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.skyscreamer</groupId>
-                <artifactId>jsonassert</artifactId>
-                <version>1.5.1</version>
                 <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
@@ -114,22 +88,6 @@
                 <version>4.2.0</version>
                 <scope>test</scope>
             </dependency>
-
-            <!-- JSON path -->
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path</artifactId>
-                <version>2.7.0</version>
-                <scope>test</scope>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path-assert -->
-            <dependency>
-                <groupId>com.jayway.jsonpath</groupId>
-                <artifactId>json-path-assert</artifactId>
-                <version>2.7.0</version>
-                <scope>test</scope>
-            </dependency>
-
             <!-- Mockito -->
             <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
             <dependency>
@@ -158,63 +116,48 @@
         </dependency>
 
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>${jjwt.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <version>${jjwt.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- or jjwt-gson if Gson is preferred -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-            <version>${jjwt.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
             <version>${eclipselink.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-depchain</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
+            <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.skyscreamer</groupId>
-            <artifactId>jsonassert</artifactId>
-        </dependency>
-        <!--        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path-assert</artifactId>
-        </dependency>     -->
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -276,220 +219,64 @@
 
     <profiles>
         <profile>
-            <id>wildfly</id>
-            <build>
-                <plugins>
-                    <!-- The WildFly plugin deploys your war to a local WildFly container -->
-                    <!-- To use, run: mvn package wildfly:deploy -->
-                    <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-maven-plugin</artifactId>
-                        <version>${wildfly-maven-plugin.version}</version>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>openliberty</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>${maven-dependency-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>copy</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>copy</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.apache.derby</groupId>
-                                    <artifactId>derby</artifactId>
-                                    <version>${derby.version}</version>
-                                    <type>jar</type>
-                                    <overWrite>false</overWrite>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources
-                            </outputDirectory>
-                        </configuration>
-                    </plugin>
-                    <!-- Enable liberty-maven-plugin -->
-                    <plugin>
-                        <groupId>io.openliberty.tools</groupId>
-                        <artifactId>liberty-maven-plugin</artifactId>
-                        <version>${liberty-maven-plugin.version}</version>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>payara-local</id>
+            <id>glassfish</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
-                <glassfish.home>${project.build.directory}/payara5</glassfish.home>
-                <glassfish.domainDir>${glassfish.home}/glassfish/domains</glassfish.domainDir>
-                <glassfish.domainName>domain1</glassfish.domainName>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>${maven-dependency-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>fish.payara.distributions</groupId>
-                                            <artifactId>payara</artifactId>
-                                            <version>${payara.version}</version>
-                                            <type>zip</type>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.cargo</groupId>
-                        <artifactId>cargo-maven2-plugin</artifactId>
-                        <version>${cargo-maven2-plugin.version}</version>
-                        <configuration>
-                            <container>
-                                <containerId>payara</containerId>
-                                <type>installed</type>
-                                <home>${glassfish.home}</home>
-                            </container>
-                            <configuration>
-                                <type>existing</type>
-                                <home>${glassfish.domainDir}</home>
-                                <properties>
-                                    <cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
-                                    <cargo.remote.timeout>300000</cargo.remote.timeout>
-                                    <cargo.remote.password></cargo.remote.password>
-                                    <!-- add extra datasource :
-                                    https://codehaus-cargo.github.io/cargo/DataSource+and+Resource+Support.html
-                                    -->
-                                    <!--<cargo.datasource.datasource.derby>
-                                        cargo.datasource.driver=org.apache.derby.jdbc.EmbeddedDriver|
-                                        cargo.datasource.url=jdbc:derby:derbyDB;create=true|
-                                        cargo.datasource.jndi=jdbc/__default|
-                                        cargo.datasource.transactionsupport=LOCAL_TRANSACTION|
-                                        cargo.datasource.username=APP|
-                                        cargo.datasource.password=nonemptypassword
-                                    </cargo.datasource.datasource.derby>-->
-                                </properties>
-                            </configuration>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>payara-remote</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.cargo</groupId>
-                        <artifactId>cargo-maven2-plugin</artifactId>
-                        <version>${cargo-maven2-plugin.version}</version>
-                        <configuration>
-                            <container>
-                                <containerId>payara</containerId>
-                                <type>remote</type>
-                            </container>
-                            <configuration>
-                                <type>runtime</type>
-                                <properties>
-                                    <cargo.remote.username>admin</cargo.remote.username>
-                                    <cargo.remote.password></cargo.remote.password>
-                                    <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
-                                    <cargo.hostname>localhost</cargo.hostname>
-                                </properties>
-                            </configuration>
-                        </configuration>
-                        <!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.glassfish.main.deployment</groupId>
-                                <artifactId>deployment-client</artifactId>
-                                <version>${glassfish.version}</version>
-                            </dependency>
-                            <dependency>
-                                <groupId>org.glassfish.jaxb</groupId>
-                                <artifactId>jaxb-runtime</artifactId>
-                                <version>2.3.6</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>arq-payara-embedded</id>
-            <properties>
-                <skipTests>false</skipTests>
+                <cargo.zipUrlInstaller.downloadDir>${project.basedir}/installs</cargo.zipUrlInstaller.downloadDir>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>fish.payara.extras</groupId>
-                    <artifactId>payara-embedded-all</artifactId>
-                    <version>${payara.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>arquillian-payara-server-embedded</artifactId>
-                    <version>${arquillian-payara.version}</version>
-                    <scope>test</scope>
-                </dependency>
             </dependencies>
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven-failsafe-plugin.version}</version>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven3-plugin</artifactId>
+                        <version>${cargo-maven3-plugin.version}</version>
                         <configuration>
-                            <!-- This needs tuning -->
-                            <systemPropertyVariables>
-                                <arquillian.launch>glassfish</arquillian.launch>
-                            </systemPropertyVariables>
+                            <container>
+                                <containerId>glassfish7x</containerId>
+                                <zipUrlInstaller>
+                                    <url>
+                                        https://github.com/eclipse-ee4j/glassfish/releases/download/${glassfish.version}/glassfish-${glassfish.version}.zip
+                                    </url>
+                                    <downloadDir>${cargo.zipUrlInstaller.downloadDir}</downloadDir>
+                                </zipUrlInstaller>
+                            </container>
+                            <configuration>
+                                <!-- the configuration used to deploy -->
+                                <home>${project.build.directory}/glassfish7x-home</home>
+                                <properties>
+                                    <cargo.remote.password></cargo.remote.password>
+                                    <cargo.glassfish.removeDefaultDatasource>true
+                                    </cargo.glassfish.removeDefaultDatasource>
+                                </properties>
+                                <datasources>
+                                    <datasource>
+                                        <driverClass>org.apache.derby.jdbc.EmbeddedDriver</driverClass>
+                                        <url>jdbc:derby:derbyDB;create=true</url>
+                                        <jndiName>jdbc/__default</jndiName>
+                                        <username>APP</username>
+                                        <password>nonemptypassword</password>
+                                    </datasource>
+                                </datasources>
+                            </configuration>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
         <profile>
-            <id>arq-payara-managed</id>
+            <id>arq-glassfish-managed</id>
             <properties>
                 <skipTests>false</skipTests>
             </properties>
             <dependencies>
-                <!-- https://mvnrepository.com/artifact/fish.payara.arquillian/payara-client-ee8 -->
-                <!-- Required since arquillian-payara 2.4 -->     
                 <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>payara-client-ee8</artifactId>
-                    <version>${arquillian-payara.version}</version>
-                </dependency>     
-                <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>arquillian-payara-server-managed</artifactId>
-                    <version>${arquillian-payara.version}</version>
+                    <groupId>com.github.hantsy.arquillian-container-glassfish-jakarta</groupId>
+                    <artifactId>arquillian-glassfish-managed-jakarta</artifactId>
+                    <version>${arquillian-glassfish-jakarta.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
@@ -502,16 +289,16 @@
                         <executions>
                             <execution>
                                 <id>unpack</id>
-                                <phase>process-test-classes</phase>
+                                <phase>pre-integration-test</phase>
                                 <goals>
                                     <goal>unpack</goal>
                                 </goals>
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>fish.payara.distributions</groupId>
-                                            <artifactId>payara</artifactId>
-                                            <version>${payara.version}</version>
+                                            <groupId>org.glassfish.main.distributions</groupId>
+                                            <artifactId>glassfish</artifactId>
+                                            <version>${glassfish.version}</version>
                                             <type>zip</type>
                                             <overWrite>false</overWrite>
                                             <outputDirectory>${project.build.directory}</outputDirectory>
@@ -526,44 +313,18 @@
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
-                            <systemPropertyVariables>
-                                <payara.home>${project.build.directory}/payara5</payara.home>
-                                <arquillian.launch>glassfish</arquillian.launch>
-                            </systemPropertyVariables>
+                            <argLine>
+                                --add-opens java.base/java.lang=ALL-UNNAMED
+                            </argLine>
+                            <environmentVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/glassfish7</GLASSFISH_HOME>
+                            </environmentVariables>
                         </configuration>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-        <profile>
-            <id>arq-payara-remote</id>
-            <properties>
-                <skipTests>false</skipTests>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>fish.payara.arquillian</groupId>
-                    <artifactId>arquillian-payara-server-remote</artifactId>
-                    <version>${arquillian-payara.version}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>${maven-failsafe-plugin.version}</version>
-                        <configuration>
-                            <!-- This needs tuning -->
-                            <systemPropertyVariables>
-                                <arquillian.launch>glassfish</arquillian.launch>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+
     </profiles>
     <reporting>
         <plugins>

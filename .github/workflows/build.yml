@@ -1,4 +1,4 @@
-name: it-with-arq-payara-managed
+name: build
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
       - reopened
 
 jobs:
-  it-with-arq-payara-managed:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 17
           distribution: 'adopt'
 
       - name: Cache Maven packages
@@ -32,4 +32,4 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Run integration test with -Parq-payara-managed
-        run: mvn clean verify -Parq-payara-managed
+        run: mvn clean verify -Parq-glassfish-managed
