@@ -1,7 +1,8 @@
 package com.example.domain.task;
 
-import com.example.domain.common.AbstractAuditableEntity;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -10,9 +11,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "projects")
-@Data
-public class Project extends AbstractAuditableEntity<Long> {
+@Setter
+@Getter
+public class Project extends AbstractActivity {
 
+    private Progress INITIAL_PROGRESS = new Progress(0, 0, 0, 0, 0, 0);
     @Column(name = "name")
     String name;
 
@@ -27,7 +30,7 @@ public class Project extends AbstractAuditableEntity<Long> {
     List<Task> tasks = new ArrayList<>();
 
     @Embedded
-    Progress progress;
+    Progress progress = INITIAL_PROGRESS;
 
     Long nextTaskNumber = 1L;
 
@@ -40,12 +43,19 @@ public class Project extends AbstractAuditableEntity<Long> {
     public void addMilestone(Milestone newMilestone) {
         newMilestone.setProject(this);
         milestones.add(newMilestone);
+        refreshProgress();
     }
 
     public void addTask(Milestone milestone, Task newTask) {
+        newTask.setTaskId(nextTaskId());
         newTask.setMilestone(milestone);
         newTask.setProject(this);
         tasks.add(newTask);
+        refreshProgress();
+    }
+
+    public Boolean isOverDue() {
+        return new ProjectIsOverdueSpecification().isSatisfiedBy(this);
     }
 
     public void refreshProgress() {

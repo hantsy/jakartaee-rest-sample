@@ -10,6 +10,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.function.Function;
 
 import static com.example.domain.task.TaskStatus.TODO;
@@ -87,4 +88,16 @@ public class Task extends AbstractActivity {
         this.tracker.stop();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return getTaskId().equals(task.getTaskId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTaskId());
+    }
 }

@@ -1,8 +1,11 @@
 package com.example.domain.task;
 
-public class ProjectIsOverdueSpecification implements ProjectSpecification{
+import java.time.LocalDateTime;
+
+public class ProjectIsOverdueSpecification implements ProjectSpecification {
     @Override
     public boolean isSatisfiedBy(Project project) {
-        return false;
+        return project.due.isBefore(LocalDateTime.now())
+            && project.progress.percentageOfCompletedTasks < 100;
     }
 }
