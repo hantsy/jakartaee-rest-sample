@@ -62,12 +62,12 @@ public class TaskResources {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(@Valid TaskForm form) {
+    public Response save(@Valid CreateTaskCommand form) {
         log.log(Level.INFO, "saving new task @{0}", form);
 
         Task task = new Task();
-        task.setName(form.getName());
-        task.setDescription(form.getDescription());
+        task.setName(form.name());
+        task.setDescription(form.description());
 
         Task saved = taskRepository.save(task);
 

@@ -39,13 +39,13 @@ public class TaskResource {
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(@Valid TaskForm form) {
+    public Response update(@Valid UpdateTaskCommand form) {
         log.log(Level.INFO, "updating existed task@id:{0}, form data:{1}", new Object[]{id, form});
 
         return taskRepository.findOptionalById(id)
                 .map(data -> {
-                    data.setName(form.getName());
-                    data.setDescription(form.getDescription());
+                    data.setName(form.name());
+                    data.setDescription(form.description());
 
                     taskRepository.save(data);
                     return noContent().build();

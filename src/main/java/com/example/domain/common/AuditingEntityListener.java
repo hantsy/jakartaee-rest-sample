@@ -5,18 +5,15 @@
  */
 package com.example.domain.common;
 
-import com.example.infrastructure.security.Authenticated;
-import com.example.infrastructure.security.UserInfo;
 
-import jakarta.enterprise.inject.spi.CDI;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+
 import java.time.LocalDateTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author hantsy
  */
 public class AuditingEntityListener {
@@ -25,8 +22,8 @@ public class AuditingEntityListener {
 
     @PrePersist
     public void beforePersist(Object entity) {
-        if (entity instanceof AbstractAuditableEntity) {
-            AbstractAuditableEntity o = (AbstractAuditableEntity) entity;
+        LOG.log(Level.INFO, "before persist: {0}", new Object[]{entity});
+        if (entity instanceof AbstractAuditableEntity<?> o) {
             final LocalDateTime now = LocalDateTime.now();
             o.setCreatedDate(now);
             o.setLastModifiedDate(now);
@@ -35,8 +32,8 @@ public class AuditingEntityListener {
 
     @PreUpdate
     public void beforeUpdate(Object entity) {
-        if (entity instanceof AbstractAuditableEntity) {
-            AbstractAuditableEntity o = (AbstractAuditableEntity) entity;
+        LOG.log(Level.INFO, "before update: {0}", new Object[]{entity});
+        if (entity instanceof AbstractAuditableEntity<?> o) {
             o.setLastModifiedDate(LocalDateTime.now());
         }
     }

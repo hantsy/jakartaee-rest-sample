@@ -6,7 +6,6 @@ import com.example.domain.task.Task;
 import com.example.domain.user.User;
 import com.example.infrastructure.persistence.jpa.AbstractRepository;
 import com.example.infrastructure.persistence.jpa.JpaTaskRepository;
-import com.example.infrastructure.persistence.jpa.JpaUserRepository;
 import com.example.interfaces.RestConfiguration;
 import com.example.interfaces.common.PageParam;
 import com.example.interfaces.common.PagedResult;

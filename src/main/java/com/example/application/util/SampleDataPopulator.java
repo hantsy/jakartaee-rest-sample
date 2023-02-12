@@ -26,7 +26,7 @@ public class SampleDataPopulator {
 
     @Inject
     TaskRepository tasks;
-    
+
     @PersistenceContext
     EntityManager entityManager;
 
