@@ -22,17 +22,17 @@
 
         <!-- Jakarta EE API -->
         <jakartaee-api.version>8.0.0</jakartaee-api.version>
-        <microprofile.version>4.0.1</microprofile.version>
-        <jjwt.version>0.11.2</jjwt.version>
+        <microprofile.version>4.1</microprofile.version>
+        <jjwt.version>0.11.5</jjwt.version>
 
         <!-- Maven Plugins -->
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
         <cargo-maven2-plugin.version>1.8.5</cargo-maven2-plugin.version>
-        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
-        <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
+        <maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
+        <maven-surefire-report-plugin.version>3.0.0-M8</maven-surefire-report-plugin.version>
 
         <!-- Arquillian BOM -->
         <arquillian-bom.version>1.6.0.Final</arquillian-bom.version>
@@ -41,15 +41,15 @@
         <glassfish.version>5.1.0</glassfish.version>
         <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
         <jersey.version>2.28</jersey.version>
-        <eclipselink.version>2.7.8</eclipselink.version>
+        <eclipselink.version>2.7.11</eclipselink.version>
 
         <!-- Payara server -->
-        <payara.version>5.2021.4</payara.version>
-        <arquillian-payara.version>2.4.2</arquillian-payara.version>
+        <payara.version>5.2022.4</payara.version>
+        <arquillian-payara.version>2.4.6</arquillian-payara.version>
 
         <!-- Wildfly server-->
         <wildfly.version>21.0.1.Final</wildfly.version>
-        <wildfly-maven-plugin.version>2.1.0.Beta1</wildfly-maven-plugin.version>
+        <wildfly-maven-plugin.version>4.0.0.Final</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>2.2.0.Final</wildfly-arquillian.version>
         <!--  websockets-jsr and resteasy for client, aligned with Wildfly version. -->
         <undertow-websockets-jsr.version>2.0.26.Final</undertow-websockets-jsr.version>
@@ -59,7 +59,7 @@
         <liberty.runtime.version>20.0.0.12</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
-        <liberty-maven-plugin.version>3.3.4</liberty-maven-plugin.version>
+        <liberty-maven-plugin.version>3.7.1</liberty-maven-plugin.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
@@ -104,14 +104,14 @@
             <dependency>
                 <groupId>org.skyscreamer</groupId>
                 <artifactId>jsonassert</artifactId>
-                <version>1.5.0</version>
+                <version>1.5.1</version>
                 <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.awaitility/awaitility -->
             <dependency>
                 <groupId>org.awaitility</groupId>
                 <artifactId>awaitility</artifactId>
-                <version>4.1.0</version>
+                <version>4.2.0</version>
                 <scope>test</scope>
             </dependency>
 
@@ -119,14 +119,14 @@
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path</artifactId>
-                <version>2.6.0</version>
+                <version>2.7.0</version>
                 <scope>test</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path-assert -->
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
                 <artifactId>json-path-assert</artifactId>
-                <version>2.6.0</version>
+                <version>2.7.0</version>
                 <scope>test</scope>
             </dependency>
 
@@ -135,7 +135,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>3.10.0</version>
+                <version>5.1.1</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -153,7 +153,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
+            <version>1.18.26</version>
             <optional>true</optional>
         </dependency>
 
@@ -431,7 +431,7 @@
                             <dependency>
                                 <groupId>org.glassfish.jaxb</groupId>
                                 <artifactId>jaxb-runtime</artifactId>
-                                <version>2.3.4</version>
+                                <version>2.3.6</version>
                             </dependency>
                         </dependencies>
                     </plugin>

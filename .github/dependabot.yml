@@ -24,4 +24,7 @@ updates:
     - dependency-name: "glassfish"
     - dependency-name: "jersey"
     - dependency-name: "eclipselink"
+    - dependency-name: "org.glassfish.jaxb:jaxb-runtime"
+      
+      
           
