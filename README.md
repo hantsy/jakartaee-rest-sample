@@ -1,8 +1,8 @@
 #  Jakarta EE JAXRS Sample
 
 ![compile and build](https://github.com/hantsy/jakartaee-jaxrs-sample/workflows/build/badge.svg)
-![Integration Test with Arquillian Payara Managed Container](https://github.com/hantsy/jakartaee-jaxrs-sample/workflows/it-with-arq-payara-managed/badge.svg)
 
+> Updated to Jakarta EE 10.
 
 A Jakarta Restful Web Service Sample application based on the [Jakarta EE 8 Starter](https://github.com/hantsy/jakartaee8-starter-boilerplate) boilerplate.
 
