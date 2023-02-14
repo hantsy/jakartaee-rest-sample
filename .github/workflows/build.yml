@@ -31,5 +31,5 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Run integration test with -Parq-payara-managed
+      - name: Run integration test with -Parq-glassfish-managed
         run: mvn clean verify -Parq-glassfish-managed
