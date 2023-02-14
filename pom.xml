@@ -37,7 +37,7 @@
         <arquillian-bom.version>1.7.0.Alpha14</arquillian-bom.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>7.0.0</glassfish.version>
+        <glassfish.version>7.0.1</glassfish.version>
         <jersey.version>3.1.1</jersey.version>
         <eclipselink.version>4.0.1-RC1</eclipselink.version>
         <arquillian-glassfish-jakarta.version>fd71edc5</arquillian-glassfish-jakarta.version>
