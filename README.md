@@ -2,7 +2,7 @@
 
 ![compile and build](https://github.com/hantsy/jakartaee-jaxrs-sample/workflows/build/badge.svg)
 
-> Updated to Jakarta EE 10.
+> Updated to Jakarta EE 10, the old Jakarta EE 8 version is archvied.
 
 A Jakarta Restful Web Service Sample application based on the [Jakarta EE 8 Starter](https://github.com/hantsy/jakartaee8-starter-boilerplate) boilerplate.
 
@@ -14,8 +14,6 @@ This project is the successor of [Java EE 8 Jaxrs Sample](https://github.com/han
 * Jakarta Security Enterprise API
 * Microprofile Config API
 
-> Note: In this sample, I upgraded the codebase to Java 11  and used the latest Payara 5 to run the application by default. 
-
 
 ## Build
 
@@ -25,18 +23,12 @@ This project is the successor of [Java EE 8 Jaxrs Sample](https://github.com/han
    git clone https://github.com/hantsy/jakartaee-jaxrs-sample
    ```
 
-2. Run on Payara, WildFly or Open Liberty.
+2. Run on Glassfish 10.
 
    ```bash
-   mvn clean package cargo:run -Ppayara-local
-   //or deploy to a running payara server
-   mvn clean package cargo:deploy -Ppayara-remote
+   mvn clean package cargo:run -Pglassfish
    
-   //run on Wildfly server
-   mvn clean wildfly:run -Pwildfly
-   
-   //run on Open Liberty
-   mvn clean liberty:create dependency:copy liberty:run -Popenliberty
+   mvn clean verify -Parq-glassfish-maanged
    ```
    
 ## Reference

@@ -25,11 +25,11 @@ jobs:
           distribution: 'adopt'
 
       - name: Cache Maven packages
-        uses: actions/cache@v3.2.4
+        uses: actions/cache@v3.2.5
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Run integration test with -Parq-payara-managed
+      - name: Run integration test with -Parq-glassfish-managed
         run: mvn clean verify -Parq-glassfish-managed
