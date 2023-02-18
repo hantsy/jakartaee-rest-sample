@@ -50,7 +50,7 @@ public class SampleDataPopulator {
                 return task;
             })
             .map(data -> tasks.save(data))
-            .collect(Collectors.toList())
+            .toList()
             .forEach(task -> LOG.log(Level.INFO, "saved task: {0}", new Object[]{task}));
     }
 }

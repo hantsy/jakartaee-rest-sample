@@ -279,6 +279,13 @@
                     <version>${arquillian-glassfish-jakarta.version}</version>
                     <scope>test</scope>
                 </dependency>
+                <!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
+                <dependency>
+                    <groupId>org.apache.derby</groupId>
+                    <artifactId>derbyclient</artifactId>
+                    <version>10.15.2.0</version>
+                    <scope>test</scope>
+                </dependency>
                 <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-json-binding</artifactId>
