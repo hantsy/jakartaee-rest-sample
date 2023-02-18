@@ -64,7 +64,7 @@ public class TaskResourceTest {
             // Enable CDI
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 
-        LOGGER.log(Level.INFO, "deployment unit: {0}", war);
+        LOGGER.log(Level.INFO, "deployment unit: {0}", war.toString(true));
 
         return war;
     }

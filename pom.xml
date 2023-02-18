@@ -346,8 +346,6 @@
                                             <version>${eclipselink.version}</version>
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
-                                            <destFileName>org.eclipse.persistence.jpa</destFileName>
-                                            <outputDirectory>${project.build.directory}/glassfish7/glassfis/hmodules</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.eclipse.persistence</groupId>
@@ -355,8 +353,6 @@
                                             <version>9.4.0</version>
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
-                                            <destFileName>org.eclipse.persistence.asm</destFileName>
-                                            <outputDirectory>${project.build.directory}/glassfish7/glassfis/hmodules</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.eclipse.persistence</groupId>
@@ -364,8 +360,6 @@
                                             <version>${eclipselink.version}</version>
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
-                                            <destFileName>org.eclipse.persistence.core</destFileName>
-                                            <outputDirectory>${project.build.directory}/glassfish7/glassfis/hmodules</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.eclipse.persistence</groupId>
@@ -373,8 +367,6 @@
                                             <version>${eclipselink.version}</version>
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
-                                            <destFileName>org.eclipse.persistence.dbws</destFileName>
-                                            <outputDirectory>${project.build.directory}/glassfish7/glassfis/hmodules</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.eclipse.persistence</groupId>
@@ -382,8 +374,6 @@
                                             <version>${eclipselink.version}</version>
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
-                                            <destFileName>org.eclipse.persistence.jpa.jpql</destFileName>
-                                            <outputDirectory>${project.build.directory}/glassfish7/glassfis/hmodules</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.eclipse.persistence</groupId>
@@ -391,8 +381,6 @@
                                             <version>${eclipselink.version}</version>
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
-                                            <destFileName>org.eclipse.persistence.jpa.modelgen.processor</destFileName>
-                                            <outputDirectory>${project.build.directory}/glassfish7/glassfis/hmodules</outputDirectory>
                                         </artifactItem>
                                         <artifactItem>
                                             <groupId>org.eclipse.persistence</groupId>
@@ -400,10 +388,10 @@
                                             <version>${eclipselink.version}</version>
                                             <type>jar</type>
                                             <overWrite>true</overWrite>
-                                            <destFileName>org.eclipse.persistence.oracle</destFileName>
-                                            <outputDirectory>${project.build.directory}/glassfish7/glassfis/hmodules</outputDirectory>
                                         </artifactItem>
                                     </artifactItems>
+                                    <stripVersion>true</stripVersion>
+                                    <outputDirectory>${project.build.directory}/glassfish7/glassfish/modules</outputDirectory>
                                 </configuration>
                             </execution>
                         </executions>

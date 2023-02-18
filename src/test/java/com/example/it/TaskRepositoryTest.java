@@ -37,7 +37,7 @@ public class TaskRepositoryTest {
             //WARN: In a jar archive, persistence.xml should be put into /META-INF
             .addAsManifestResource("META-INF/persistence.xml", "persistence.xml");
 
-        LOGGER.log(Level.INFO, "deployment unit: {0}", jar);
+        LOGGER.log(Level.INFO, "deployment unit: {0}", jar.toString(true));
 
         return jar;
     }
