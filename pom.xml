@@ -34,7 +34,7 @@
         <maven-surefire-report-plugin.version>3.2.2</maven-surefire-report-plugin.version>
 
         <!-- Arquillian BOM -->
-        <arquillian-bom.version>1.7.2.Final</arquillian-bom.version>
+        <arquillian-bom.version>1.8.0.Final</arquillian-bom.version>
 
         <!-- Glassfish server -->
         <glassfish.version>7.0.5</glassfish.version>
