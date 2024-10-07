@@ -40,7 +40,7 @@
     	<shrinkwrap-resolver-bom.version>3.3.1</shrinkwrap-resolver-bom.version>       
 
         <!-- Glassfish server -->
-        <glassfish.version>7.0.17</glassfish.version>
+        <glassfish.version>7.0.18</glassfish.version>
         <jersey.version>3.1.8</jersey.version>
         <eclipselink.version>4.0.4</eclipselink.version>
         <arquillian-glassfish-jakarta.version>7.0.10</arquillian-glassfish-jakarta.version>
