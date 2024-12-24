@@ -54,7 +54,7 @@ public class TaskResources {
             taskStatus = null;
         }
 
-        List<Task> tasks = taskRepository.searchByKeyword(keyword, taskStatus, page.getOffset(), page.getLimit());
+        List<Task> tasks = taskRepository.searchByKeyword(keyword, taskStatus, page.offset(), page.limit());
         long count = taskRepository.countByKeyword(keyword, taskStatus);
         return ok(PagedResult.of(tasks, count)).build();
     }

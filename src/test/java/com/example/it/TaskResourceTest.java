@@ -5,7 +5,7 @@ import com.example.domain.common.AbstractEntity;
 import com.example.domain.task.Task;
 import com.example.infrastructure.persistence.jpa.AbstractRepository;
 import com.example.infrastructure.persistence.jpa.JpaTaskRepository;
-import com.example.interfaces.RestConfiguration;
+import com.example.interfaces.RestActivator;
 import com.example.interfaces.common.PageParam;
 import com.example.interfaces.common.PagedResult;
 import com.example.interfaces.task.TaskResources;
@@ -41,7 +41,7 @@ public class TaskResourceTest {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        WebArchive war = ShrinkWrap.create(WebArchive.class)
+        WebArchive war = ShrinkWrap.create(WebArchive.class, "rest.war")
 
             // entities
             .addPackage(AbstractEntity.class.getPackage())
@@ -56,7 +56,7 @@ public class TaskResourceTest {
             .addPackage(PageParam.class.getPackage())
 
             //rest config
-            .addClass(RestConfiguration.class)
+            .addClass(RestActivator.class)
 
             //Add JPA persistence configuration.
             //WARN: In a war archive, persistence.xml should be put into /WEB-INF/classes/META-INF/, not /META-INF
@@ -94,7 +94,7 @@ public class TaskResourceTest {
             .get()) {
             assertTrue(getAllTasksResponse.getStatus() == 200, "status is ok");
             assertTrue(getAllTasksResponse.readEntity(new GenericType<PagedResult<Task>>() {
-                }).getContent().size() == 2,
+                }).content().size() == 2,
                 "response should contain two tasks"
             );
 
