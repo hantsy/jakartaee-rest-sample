@@ -5,7 +5,7 @@ import com.example.domain.common.AbstractEntity;
 import com.example.domain.task.Task;
 import com.example.infrastructure.persistence.jpa.AbstractRepository;
 import com.example.infrastructure.persistence.jpa.JpaTaskRepository;
-import com.example.interfaces.RestConfiguration;
+import com.example.interfaces.RestActivator;
 import com.example.interfaces.common.PageParam;
 import com.example.interfaces.common.PagedResult;
 import com.example.interfaces.task.TaskResources;
@@ -32,7 +32,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -41,28 +41,28 @@ public class TaskResourceTest {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        WebArchive war = ShrinkWrap.create(WebArchive.class)
+        WebArchive war = ShrinkWrap.create(WebArchive.class, "rest.war")
 
-            // entities
-            .addPackage(AbstractEntity.class.getPackage())
-            .addPackage(Task.class.getPackage())
-            .addClass(JpaTaskRepository.class).addClass(AbstractRepository.class)
+                // entities
+                .addPackage(AbstractEntity.class.getPackage())
+                .addPackage(Task.class.getPackage())
+                .addClass(JpaTaskRepository.class).addClass(AbstractRepository.class)
 
-            //sample data
-            .addPackages(true, SampleDataPopulator.class.getPackage())
+                //sample data
+                .addPackages(true, SampleDataPopulator.class.getPackage())
 
-            // rest
-            .addPackage(TaskResources.class.getPackage())
-            .addPackage(PageParam.class.getPackage())
+                // rest
+                .addPackage(TaskResources.class.getPackage())
+                .addPackage(PageParam.class.getPackage())
 
-            //rest config
-            .addClass(RestConfiguration.class)
+                //rest config
+                .addClass(RestActivator.class)
 
-            //Add JPA persistence configuration.
-            //WARN: In a war archive, persistence.xml should be put into /WEB-INF/classes/META-INF/, not /META-INF
-            .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
-            // Enable CDI
-            .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                //Add JPA persistence configuration.
+                //WARN: In a war archive, persistence.xml should be put into /WEB-INF/classes/META-INF/, not /META-INF
+                .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
+                // Enable CDI
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 
         LOGGER.log(Level.INFO, "deployment unit: {0}", war.toString(true));
 
@@ -88,16 +88,13 @@ public class TaskResourceTest {
 
     @Test
     public void shouldFoundTasks() throws MalformedURLException {
-        final WebTarget getAllTasksTarget = client.target(URI.create(new URL(base, "api/tasks").toExternalForm()));
+        final WebTarget getAllTasksTarget = client.target(URI.create(base.toExternalForm() + "api/tasks"));
         try (final Response getAllTasksResponse = getAllTasksTarget.request()
-            .accept(MediaType.APPLICATION_JSON)
-            .get()) {
-            assertTrue(getAllTasksResponse.getStatus() == 200, "status is ok");
-            assertTrue(getAllTasksResponse.readEntity(new GenericType<PagedResult<Task>>() {
-                }).getContent().size() == 2,
-                "response should contain two tasks"
-            );
-
+                .accept(MediaType.APPLICATION_JSON)
+                .get()) {
+            assertEquals(200, getAllTasksResponse.getStatus(), "status is ok");
+            assertEquals(2, getAllTasksResponse.readEntity(new GenericType<PagedResult<Task>>() {
+            }).content().size(), "response should contain two tasks");
         }
     }
 }

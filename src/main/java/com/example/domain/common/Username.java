@@ -5,24 +5,12 @@
  */
 package com.example.domain.common;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import jakarta.persistence.Embeddable;
-import java.io.Serializable;
 
 /**
- *
  * @author hantsy
  */
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Embeddable
-public class Username implements Serializable {
-    
-    private String username;
-}
+public record Username(
+        String username
+){}
