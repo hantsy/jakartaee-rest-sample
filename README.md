@@ -1,19 +1,28 @@
-#  Jakarta EE JAXRS Sample
+#  Jakarta REST Example
 
 ![compile and build](https://github.com/hantsy/jakartaee-jaxrs-sample/workflows/build/badge.svg)
 
-> Updated to Jakarta EE 10, the old Jakarta EE 8 version is archvied.
+The repository is already upgraded to Jakarta EE 11.
 
-A Jakarta Restful Web Service Sample application based on the [Jakarta EE 8 Starter](https://github.com/hantsy/jakartaee8-starter-boilerplate) boilerplate.
+* For the Jakarta EE 10 version, please check the EE10 archive or EE10 branch.
+* For the Jakarta EE 8 version, please check the EE8 archive and EE8 branch.
 
-This project is the successor of [Java EE 8 Jaxrs Sample](https://github.com/hantsy/javaee8-jaxrs-sample) and [Java EE 7 Jaxrs Sample](https://github.com/hantsy/ee7-jaxrs-sample), and updated to the new Jakarta EE 8 API, including:
+For the example project before Jakarta EE 8, check the following repositories instead.
 
-* Jakarta Restful Web Service
-* Jakarta Enterprise Beans/Jakarta Persistence/Jakarta Bean Validation
-* Jakarta Context and Dependency Injection
-* Jakarta Security Enterprise API
-* Microprofile Config API
+* [Java EE 8 Jaxrs Sample](https://github.com/hantsy/javaee8-jaxrs-sample)
+* [Java EE 7 Jaxrs Sample](https://github.com/hantsy/ee7-jaxrs-sample)
 
+Compared to the previous Jakarta EE 10 version, the following changes are applied:
+
+* Update Jakarta EE API to 11.0.0 and Glassfish to 8.0.0
+* Replace all EJB codes with pure CDI codes
+* Use record type as possible
+
+## Prerequisites
+
+* Java 21
+* The latest Apache Maven 3.x or 4.x
+* Docker Desktop or Docker Compose
 
 ## Build
 
@@ -23,11 +32,15 @@ This project is the successor of [Java EE 8 Jaxrs Sample](https://github.com/han
    git clone https://github.com/hantsy/jakartaee-jaxrs-sample
    ```
 
-2. Run on Glassfish 10.
+2. Run on Glassfish.
 
    ```bash
    mvn clean package cargo:run -Pglassfish
+   ```
    
+3. Run Integration Tests against Arquillian Glassfish Managed Adapter
+
+  ```bash 
    mvn clean verify -Parq-glassfish-maanged
    ```
    

@@ -6,14 +6,11 @@
 package com.example.domain.task;
 
 import com.example.domain.common.AbstractAuditableEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.function.Function;
 
 import static com.example.domain.task.Task.Status.TODO;
@@ -22,10 +19,6 @@ import static com.example.domain.task.Task.Status.TODO;
  * @author hantsy
  */
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class Task extends AbstractAuditableEntity<Long> {
 
     private static final long serialVersionUID = 1L;
@@ -76,4 +69,78 @@ public class Task extends AbstractAuditableEntity<Long> {
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate;
 
+    public Task() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id) && Objects.equals(name, task.name) && Objects.equals(description, task.description) && status == task.status && Objects.equals(createdDate, task.createdDate) && Objects.equals(lastModifiedDate, task.lastModifiedDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, status, createdDate, lastModifiedDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", createdDate=" + createdDate +
+                ", lastModifiedDate=" + lastModifiedDate +
+                '}';
+    }
 }

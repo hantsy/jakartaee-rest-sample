@@ -61,7 +61,7 @@ public class TaskResource {
 
         Task.Status taskStatus = null;
         try {
-            taskStatus = Task.Status.valueOf(status.getStatus());
+            taskStatus = Task.Status.valueOf(status.status());
         } catch (Exception e) {
             log.log(Level.SEVERE, "can not parse task status value:{}", status);
             taskStatus = null;
