@@ -2,15 +2,14 @@ package com.example.interfaces.task;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 
 public record CreateTaskCommand(
-    @NotBlank
-    String name,
+        @NotBlank
+        String name,
 
-    @NotBlank
-    @Size(min = 10, max = 2000)
-    String description
+        @NotBlank
+        @Size(min = 10, max = 2000)
+        String description
 ) {
 
 }

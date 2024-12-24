@@ -5,6 +5,7 @@ import com.example.domain.task.TaskRepository;
 import com.example.domain.task.Task_;
 
 import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class JpaTaskRepository extends AbstractRepository<Task, Long> implements TaskRepository {
 
-    @PersistenceContext
+    @Inject
     EntityManager em;
 
     @Override
@@ -83,7 +84,7 @@ public class JpaTaskRepository extends AbstractRepository<Task, Long> implements
     @Override
     public List<Task> findByCreatedBy(String name) {
         Objects.requireNonNull(name, "username can not be null");
-        return this.stream().filter(t -> name.equals(t.getCreatedBy().getUsername())).collect(Collectors.toList());
+        return this.stream().filter(t -> name.equals(t.getCreatedBy().username())).collect(Collectors.toList());
     }
 
     @Override

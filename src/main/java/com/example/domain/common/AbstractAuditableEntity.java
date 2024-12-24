@@ -5,22 +5,17 @@
  */
 package com.example.domain.common;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+
 import java.time.LocalDateTime;
 
 /**
- *
- * @author hantsy
  * @param <ID>
+ * @author hantsy
  */
 @MappedSuperclass
-@Setter
-@Getter
 // applied it in orm.xml instead.
 //@EntityListeners(AuditEntityListener.class)
 public class AbstractAuditableEntity<ID> extends AbstractEntity<ID> {
@@ -38,4 +33,36 @@ public class AbstractAuditableEntity<ID> extends AbstractEntity<ID> {
 
     @AttributeOverride(name = "username", column = @Column(name = "last_modified_by"))
     private Username lastModifiedBy;
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public Username getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Username createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Username getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(Username lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
 }

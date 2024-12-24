@@ -5,6 +5,8 @@ import com.example.domain.task.TaskRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -17,8 +19,7 @@ import java.util.stream.Stream;
 /**
  * @author hantsy
  */
-@Startup
-@Singleton
+@ApplicationScoped
 public class SampleDataPopulator {
 
     @Inject
@@ -30,8 +31,7 @@ public class SampleDataPopulator {
     @PersistenceContext
     EntityManager entityManager;
 
-    @PostConstruct
-    public void init() {
+    public void init(@Observes Startup startup) {
         initTasks();
     }
 
