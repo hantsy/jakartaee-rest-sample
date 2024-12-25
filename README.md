@@ -2,12 +2,12 @@
 
 ![compile and build](https://github.com/hantsy/jakartaee-jaxrs-sample/workflows/build/badge.svg)
 
-The repository is already upgraded to Jakarta EE 11.
+The repository has already been upgraded to Jakarta EE 11.
 
 * For the Jakarta EE 10 version, please check the EE10 archive or EE10 branch.
 * For the Jakarta EE 8 version, please check the EE8 archive and EE8 branch.
 
-For the example project before Jakarta EE 8, check the following repositories instead.
+For the example projects before Jakarta EE 8, check the following repositories instead.
 
 * [Java EE 8 Jaxrs Sample](https://github.com/hantsy/javaee8-jaxrs-sample)
 * [Java EE 7 Jaxrs Sample](https://github.com/hantsy/ee7-jaxrs-sample)
@@ -41,7 +41,7 @@ Compared to the previous Jakarta EE 10 version, the following changes are applie
 3. Run Integration Tests against Arquillian Glassfish Managed Adapter
 
   ```bash 
-   mvn clean verify -Parq-glassfish-maanged
+   mvn clean verify -Parq-glassfish-managed
    ```
    
 ## Reference
