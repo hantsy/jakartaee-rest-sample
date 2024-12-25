@@ -40,7 +40,7 @@ Compared to the previous Jakarta EE 10 version, the following changes are applie
    
 3. Run Integration Tests against Arquillian Glassfish Managed Adapter
 
-  ```bash 
+   ```bash 
    mvn clean verify -Parq-glassfish-managed
    ```
    
