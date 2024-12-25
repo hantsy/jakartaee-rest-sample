@@ -4,8 +4,8 @@
 
 The repository has already been upgraded to Jakarta EE 11.
 
-* For the Jakarta EE 10 version, please check the EE10 archive or EE10 branch.
-* For the Jakarta EE 8 version, please check the EE8 archive and EE8 branch.
+* For the Jakarta EE 10 version, please check the EE10 archive or [EE10 tag](https://github.com/hantsy/jakartaee-rest-sample/tree/ee10).
+* For the Jakarta EE 8 version, please check the EE8 archive and [EE8 tag](https://github.com/hantsy/jakartaee-rest-sample/tree/1.0.0).
 
 For the example projects before Jakarta EE 8, check the following repositories instead.
 
