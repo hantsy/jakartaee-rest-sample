@@ -22,7 +22,6 @@ Compared to the previous Jakarta EE 10 version, the following changes are applie
 
 * Java 21
 * The latest Apache Maven 3.x or 4.x
-* Docker Desktop or Docker Compose
 
 ## Build
 
