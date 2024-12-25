@@ -1,6 +1,6 @@
 #  Jakarta REST Example
 
-![compile and build](https://github.com/hantsy/jakartaee-jaxrs-sample/workflows/build/badge.svg)
+[![build](https://github.com/hantsy/jakartaee-rest-sample/actions/workflows/build.yml/badge.svg)](https://github.com/hantsy/jakartaee-rest-sample/actions/workflows/build.yml)
 
 The repository has already been upgraded to Jakarta EE 11.
 
