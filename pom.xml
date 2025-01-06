@@ -33,7 +33,7 @@
         <maven-surefire-report-plugin.version>3.5.2</maven-surefire-report-plugin.version>
 
         <!-- Arquillian BOM -->
-        <arquillian-bom.version>1.9.1.Final</arquillian-bom.version>
+        <arquillian-bom.version>1.9.2.Final</arquillian-bom.version>
         <!-- Since Aruqillian core 1.9.0.Final, need to add Aruqillian Jakarta BOM which aligns to Jakarta EE -->
     	<arquillian-jakarta-bom.version>10.0.0.Final</arquillian-jakarta-bom.version>
     	<shrinkwrap-resolver-bom.version>3.3.3</shrinkwrap-resolver-bom.version>
