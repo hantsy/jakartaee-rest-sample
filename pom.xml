@@ -26,7 +26,7 @@
         <!-- Maven Plugins -->
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-        <cargo-maven3-plugin.version>1.10.16</cargo-maven3-plugin.version>
+        <cargo-maven3-plugin.version>1.10.17</cargo-maven3-plugin.version>
         <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.5.2</maven-failsafe-plugin.version>
@@ -43,11 +43,11 @@
         <hamcrest.version>3.0</hamcrest.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
+        <glassfish.version>8.0.0-M9</glassfish.version>
         <jersey.version>4.0.0-M2</jersey.version>
         <eclipselink.version>5.0.0-B06</eclipselink.version>
         <derbyclient.version>10.17.1.0</derbyclient.version>
-        <arquillian-glassfish-jakarta.version>7.0.10</arquillian-glassfish-jakarta.version>
+        <arquillian-glassfish.version>7.0.13</arquillian-glassfish.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
@@ -293,9 +293,9 @@
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>com.github.hantsy.arquillian-container-glassfish-jakarta</groupId>
-                    <artifactId>arquillian-glassfish-managed-jakarta</artifactId>
-                    <version>${arquillian-glassfish-jakarta.version}</version>
+                    <groupId>io.github.hantsy.arquillian</groupId>
+                    <artifactId>arquillian-glassfish-managed</artifactId>
+                    <version>${arquillian-glassfish.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
@@ -443,10 +443,6 @@
     </reporting>
 
     <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
         <repository>
             <id>sonatype-nexus-staging</id>
             <name>Sonatype Nexus Staging</name>
