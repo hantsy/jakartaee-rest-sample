@@ -1,6 +1,10 @@
 name: Dependabot auto-merge
 on: 
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
   workflow_run:
     workflows: ["build"]
     types:
