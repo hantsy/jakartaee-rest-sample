@@ -47,7 +47,7 @@
         <jersey.version>4.0.0-M2</jersey.version>
         <eclipselink.version>5.0.0-B05</eclipselink.version>
         <derbyclient.version>10.17.1.0</derbyclient.version>
-        <arquillian-glassfish-jakarta.version>7.0.10</arquillian-glassfish-jakarta.version>
+        <arquillian-glassfish.version>7.0.13</arquillian-glassfish.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
@@ -293,9 +293,9 @@
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>com.github.hantsy.arquillian-container-glassfish-jakarta</groupId>
-                    <artifactId>arquillian-glassfish-managed-jakarta</artifactId>
-                    <version>${arquillian-glassfish-jakarta.version}</version>
+                    <groupId>io.github.hantsy.arquillian</groupId>
+                    <artifactId>arquillian-glassfish-managed</artifactId>
+                    <version>${arquillian-glassfish.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
@@ -443,10 +443,6 @@
     </reporting>
 
     <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
         <repository>
             <id>sonatype-nexus-staging</id>
             <name>Sonatype Nexus Staging</name>
