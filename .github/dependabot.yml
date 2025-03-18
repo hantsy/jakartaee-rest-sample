@@ -22,7 +22,7 @@ updates:
 #      versions: ["3.x, 4.x"]
 #    - dependency-name: "jakarta.jakartaee-api"
      - dependency-name: "org.glassfish.*"
-       versions: ["10.0.0-jdk17-*"]
+       versions: ["10.0.0-jdk17-M10"]
 #    - dependency-name: "jersey"
 #    - dependency-name: "eclipselink"
 #    - dependency-name: "org.glassfish.jaxb:jaxb-runtime"
