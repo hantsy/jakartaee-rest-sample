@@ -12,7 +12,7 @@ updates:
     time: "21:00"
   open-pull-requests-limit: 10
   # Overwrite any ignores created using `@dependabot ignore` commands
-#  ignore:
+  ignore:
 #    # Ignore updates to packages that start 'aws'
 #    # Wildcards match zero or more arbitrary characters
 #    #- dependency-name: "aws*"
@@ -21,7 +21,8 @@ updates:
 #      # Ignore only new versions for 4.x
 #      versions: ["3.x, 4.x"]
 #    - dependency-name: "jakarta.jakartaee-api"
-#    - dependency-name: "glassfish"
+     - dependency-name: "org.glassfish.*"
+       versions: ["*jdk17-*"]
 #    - dependency-name: "jersey"
 #    - dependency-name: "eclipselink"
 #    - dependency-name: "org.glassfish.jaxb:jaxb-runtime"
