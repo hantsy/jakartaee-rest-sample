@@ -47,7 +47,7 @@
         <jersey.version>4.0.0-M2</jersey.version>
         <eclipselink.version>5.0.0-B10</eclipselink.version>
         <derbyclient.version>10.17.1.0</derbyclient.version>
-        <arquillian-glassfish.version>7.0.13</arquillian-glassfish.version>
+        <arquillian-glassfish.version>7.0.14</arquillian-glassfish.version>
 
         <!-- By default, skip tests -->
         <skipTests>true</skipTests>
