@@ -43,7 +43,7 @@
         <hamcrest.version>3.0</hamcrest.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>8.0.0-M14</glassfish.version>
+        <glassfish.version>8.0.0-JDK17-M12</glassfish.version>
         <jersey.version>4.0.0</jersey.version>
         <eclipselink.version>5.0.0-B11</eclipselink.version>
         <derbyclient.version>10.17.1.0</derbyclient.version>
