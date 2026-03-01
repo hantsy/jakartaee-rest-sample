@@ -85,7 +85,9 @@ public class JpaTaskRepository extends AbstractRepository<Task, Long> implements
     @Override
     public List<Task> findByCreatedBy(String name) {
         Objects.requireNonNull(name, "username can not be null");
-        return this.stream().filter(t -> name.equals(t.getCreatedBy().username())).collect(Collectors.toList());
+        return this.stream()
+                .filter(t -> name.equals(t.getCreatedBy().username()))
+                .toList();
     }
 
     @Override

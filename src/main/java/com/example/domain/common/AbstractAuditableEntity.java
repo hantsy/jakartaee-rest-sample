@@ -9,6 +9,7 @@ import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 
+import java.io.Serial;
 import java.time.LocalDateTime;
 
 /**
@@ -19,8 +20,6 @@ import java.time.LocalDateTime;
 // applied it in orm.xml instead.
 //@EntityListeners(AuditEntityListener.class)
 public class AbstractAuditableEntity<ID> extends AbstractEntity<ID> {
-
-    private static final long serialVersionUID = 1L;
 
     @Column(name = "created_at")
     private LocalDateTime createdDate;

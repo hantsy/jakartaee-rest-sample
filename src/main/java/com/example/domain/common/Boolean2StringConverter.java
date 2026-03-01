@@ -13,6 +13,6 @@ public class Boolean2StringConverter implements AttributeConverter<Boolean, Stri
 
     @Override
     public Boolean convertToEntityAttribute(String dbData) {
-        return "on".equals(dbData) || Boolean.parseBoolean(dbData) || Boolean.FALSE;
+        return "on".equals(dbData) || Boolean.parseBoolean(dbData);
     }
 }

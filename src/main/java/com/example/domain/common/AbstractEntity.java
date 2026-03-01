@@ -15,8 +15,6 @@ import java.io.Serializable;
 @MappedSuperclass
 public class AbstractEntity<ID> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

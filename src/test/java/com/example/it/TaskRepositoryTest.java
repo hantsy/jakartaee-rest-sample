@@ -29,7 +29,7 @@ public class TaskRepositoryTest {
 
     @Deployment()
     public static JavaArchive createDeployment() {
-        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "test.jar")
+        JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "TaskRepositoryTest.jar")
             .addPackage(AbstractEntity.class.getPackage())
             .addPackage(Task.class.getPackage())
             .addClass(JpaTaskRepository.class).addClass(AbstractRepository.class)

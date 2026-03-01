@@ -41,7 +41,7 @@ public class TaskResourceTest {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        WebArchive war = ShrinkWrap.create(WebArchive.class, "rest.war")
+        WebArchive war = ShrinkWrap.create(WebArchive.class, "TaskResourceTest.war")
 
                 // entities
                 .addPackage(AbstractEntity.class.getPackage())
