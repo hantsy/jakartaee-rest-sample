@@ -1,4 +1,4 @@
-# Jakarta REST Example
+# Jakarta EE REST Example
 
 [![build](https://github.com/hantsy/jakartaee-rest-sample/actions/workflows/build.yml/badge.svg)](https://github.com/hantsy/jakartaee-rest-sample/actions/workflows/build.yml)
 
