@@ -44,7 +44,7 @@
 
         <!-- Glassfish server -->
         <glassfish.version>8.0.5</glassfish.version>
-        <jersey.version>4.0.2</jersey.version>
+        <jersey.version>4.0.3</jersey.version>
         <eclipselink.version>5.0.0-B13</eclipselink.version>
         <derbyclient.version>10.17.1.0</derbyclient.version>
         <arquillian-glassfish.version>7.1.1</arquillian-glassfish.version>
